@@ -33,7 +33,11 @@ Route::get('/', function () {
 });
 
 Route::post('/asociaciones', [AsociacionController::class, 'store'])->name('fase1');
-Route::get('/', [AsociacionController::class, 'agencias']);
+Route::get('/', [AsociacionController::class, 'municipios']);
+
+Route::get('/f2', function () {
+    return view('fase2');
+});
 
 
 //vista admin solo asociaciones fase1

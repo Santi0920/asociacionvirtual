@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     public function getasociaciones(){
-        $usuarioActual = Auth::user();
-        $agenciaU = $usuarioActual->agenciau;
+
+        $agenciaU = session('agenciau');
 
         if($agenciaU == 'Todo'){
             $asociacion = Asociacion::get();

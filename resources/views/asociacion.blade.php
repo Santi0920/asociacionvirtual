@@ -39,11 +39,13 @@
                     </div>
                     <div class="row text-center">
                             <h3 class="fw-semibold"><span>Fecha: </span><span class="text-dark" id="currentDateTime"></span></h3>
+                            <h3 class="fw-semibold fs-4"><span>Lugar desde donde nos escribe:</span></h3>
                             <div class="select-container">
+
                                 <select id="ciudad" name="ciudad" class="form-control border border-dark text-center fw-bold fs-5 blink" required>
-                                  <option value="">Seleccionar agencia</option>
-                                  @foreach($agencias as $agencia)
-                                    <option value="{{ $agencia->NameAgencia }}">{{ $agencia->NameAgencia }}</option>
+                                  <option value="" selected disabled>Seleccionar Municipio</option>
+                                  @foreach($municipios as $municipio)
+                                    <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
                                   @endforeach
                                 </select>
                                 <div class="select-arrow">
@@ -113,7 +115,10 @@
                     <div class="m-0 col">
                         <div class="select-container">
                             <select class="form-control border border-dark" id="" name="lnacimiento" required>
-                                @include('layouts.optionsmunicipios')
+                                <option value=""  selected disabled>Seleccionar Opción</option>
+                                @foreach($municipios as $municipio)
+                                    <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                @endforeach
                             </select>
                             <div class="select-arrow">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -150,7 +155,10 @@
                     <div class="m-0 col">
                         <div class="select-container">
                             <select class="form-control border border-dark" id="" name="lexpedicion" required>
-                                @include('layouts.optionsmunicipios')
+                                <option value=""  selected disabled>Seleccionar Opción</option>
+                                @foreach($municipios as $municipio)
+                                    <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                @endforeach
                             </select>
                             <div class="select-arrow">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -159,6 +167,15 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <!-- Direccion de residencia : -->
+                    <div class="row m-0 g-3 mb-2 align-items-center">
+                        <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                            <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">11. </span> Dirección de residencia:</label>
+                        </div>
+                        <div class="m-0 col">
+                            <input type="text" id="residencia" class="form-control  border border-dark" placeholder="Dirección residencia" name="dresidencia" required>
+                        </div>
                     </div>
 
                 </div>
@@ -292,23 +309,35 @@
                         </div>
                     </div>
 
-                </div>
-                <!-- ========== Dirección residencia ========== -->
-                <div class="col-12 col-md-12 col-lg-12">
+                    <!-- Ciudad de Residencia : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
-                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="residencia" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">11. </span>Dirección residencia :</label>
+                        <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                            <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span>Ciudad de residencia :</label>
+                        </div>
+                        <div class="m-0 col">
+                            <div class="select-container">
+                                <select class="form-control border border-dark" id="" name="ciudadresidencia" required>
+                                    <option value=""  selected disabled>Seleccionar Opción</option>
+                                    @foreach($municipios as $municipio)
+                                        <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="select-arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                    <path d="m6 9 6 6 6-6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="m-0 col">
-                        <input type="text" id="residencia" class="form-control  border border-dark" placeholder="Dirección residencia" name="dresidencia" required>
-                    </div>
-                    </div>
+
                 </div>
+
                 <!-- ========== Empresa donde trabaja ========== -->
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span>Empresa donde trabaja :</label>
+                        <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Empresa donde trabaja :</label>
                     </div>
                     <div class="m-0 col">
                         <input type="text" id="empresa" class="form-control  border border-dark" placeholder="Empresa donde trabaja" name="empresatrabaja" required>
@@ -320,7 +349,7 @@
                     <!-- Dirección trabajo : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Dirección trabajo :</label>
+                        <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Dirección trabajo :</label>
                     </div>
                     <div class="m-0 col">
                         <input type="text" id="trabajo" class="form-control  border border-dark" placeholder="Dirección trabajo" name="dtrabajo" required>
@@ -329,11 +358,23 @@
                     <!-- Cargo : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Cargo :</label>
+                        <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Cargo :</label>
                     </div>
                     <div class="m-0 col">
                         <input type="text" id="cargo" class="form-control  border border-dark" placeholder="Cargo" name="cargo" required>
                     </div>
+                    </div>
+
+                <!-- ========== Dirección de correspondencia ========== -->
+                    <div class="row m-0 g-3 mb-2 align-items-center">
+                        <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                            <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>Dirección de
+                                correspondencia :</label>
+                        </div>
+                        <div class="m-0 col">
+                            <input type="text" id="dir_correspondencias" class="form-control  border border-dark"
+                            placeholder="Dirección de correspondencia" name="dcorrespondencia" required>
+                        </div>
                     </div>
                 </div>
                 <!-- ========== Lado Izquierdo ========== -->
@@ -341,28 +382,29 @@
                     <!-- Ciudad de la empresa : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Ciudad de la empresa
+                        <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Ciudad de la empresa
                             :</label>
                     </div>
                     <div class="m-0 col">
-                        <div class="m-0 col">
-                                <div class="select-container">
-                                    <select class="form-control border border-dark" id="ciudad_empresa" name="ciudadempresa" required>
-                                        @include('layouts.optionsmunicipios')
-                                    </select>
-                                    <div class="select-arrow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
-                                        <path d="m6 9 6 6 6-6"/>
-                                        </svg>
-                                    </div>
+                            <div class="select-container">
+                                <select class="form-control border border-dark" id="ciudad_empresa" name="ciudadempresa" required>
+                                    <option value=""  selected disabled>Seleccionar Opción</option>
+                                    @foreach($municipios as $municipio)
+                                        <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="select-arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                    <path d="m6 9 6 6 6-6"/>
+                                    </svg>
                                 </div>
-                        </div>
+                            </div>
                     </div>
                     </div>
                     <!-- Tiempo en el cargo : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Tiempo en el cargo :</label>
+                        <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Tiempo en el cargo :</label>
                     </div>
                     <div class="m-0 col">
                         <div style="display: inline-block;">
@@ -385,26 +427,36 @@
                         </div>
                     </div>
                     </div>
-                </div>
-                <!-- ========== Dirección de correspondencia ========== -->
-                <div class="col-12 col-md-12 col-lg-12">
+
+                    <!-- ========== Ciudad de correspondencia ========== -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
-                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Dirección de
-                            correspondencia :</label>
-                    </div>
-                    <div class="m-0 col">
-                            <input type="text" id="dir_correspondencias" class="form-control  border border-dark"
-                            placeholder="Dirección de correspondencia" name="dcorrespondencia" required>
-                    </div>
+                        <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                            <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>Ciudad de correspondencia :</label>
+                        </div>
+                        <div class="m-0 col">
+                            <div class="select-container">
+                                <select class="form-control border border-dark" id="" name="ciudcorrespondencia" required>
+                                    <option value=""  selected disabled>Seleccionar Opción</option>
+                                    @foreach($municipios as $municipio)
+                                        <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="select-arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                    <path d="m6 9 6 6 6-6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <!-- ========== Lado Derecho ========== -->
                 <div class="col-12 col-md-12 col-lg-6">
                     <!-- Celular #1 : -->
                     <div class="row m-0 mb-2 align-items-center">
                         <div class="col-auto">
-                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>Celular #1:</label>
+                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>Celular #1:</label>
                         </div>
                         <div class="col">
                             <div class="d-flex align-items-center">
@@ -426,7 +478,7 @@
                     <!-- WhatsApp #1 : -->
                     <div class="row m-0 mb-2 align-items-center">
                         <div class="col-auto">
-                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>Whatsapp #1:</label>
+                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Whatsapp #1:</label>
                         </div>
                         <div class="col">
                             <div class="d-flex align-items-center">
@@ -450,7 +502,7 @@
                     <!-- Celular #2 : -->
                     <div class="row m-0 mb-2 align-items-center">
                         <div class="col-auto">
-                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>Celular #2:</label>
+                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Celular #2:</label>
                         </div>
                         <div class="col">
                             <div class="d-flex align-items-center">
@@ -471,7 +523,7 @@
                     <!-- WhatsApp #2 : -->
                     <div class="row m-0 mb-2 align-items-center">
                         <div class="col-auto">
-                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Whatsapp #2:</label>
+                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Whatsapp #2:</label>
                         </div>
                         <div class="col">
                             <div class="d-flex align-items-center">
@@ -494,7 +546,7 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Correo electronico :</label>
+                        <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">24. </span>Correo electronico :</label>
                     </div>
                     <div class="row m-0">
                         <div class="col">
@@ -511,7 +563,7 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-auto">
-                            <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Usted autoriza a Coopserp para que
+                            <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">25. </span>Usted autoriza a Coopserp para que
                                 consulte sus datos en las
                                 centrales de
                                 riesgo :</label>

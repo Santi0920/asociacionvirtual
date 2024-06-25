@@ -1,6 +1,13 @@
 @include('layouts/head2')
 
 <body>
+    @if (!session()->has('email'))
+        @php
+            header("Location: login");
+            exit();
+        @endphp
+    @else
+    @endif
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar" class="">
             <div class="custom-menu d-block d-lg-none">
@@ -17,7 +24,7 @@
                 <div class="text-center">
                     <h1 class="fs-5 text-white">❗Asociación Virtual❗</h1>
                     <img style="height: 5.5rem" class="mx-1 mb-2 mt-2" src="img/perfil.png">
-                    <h1 class="fs-5 text-white">Bienvenido <span class="text-warning">{{ auth()->user()->name }}</span>
+                    <h1 class="fs-5 text-white">Bienvenido <span class="text-warning">{{ session('name') }}</span>
                     </h1>
 
                 </div>
@@ -186,7 +193,7 @@
                                 <div class="m-0 col">
                                     <div class="select-container">
                                         <select class="form-control border border-dark" id="lnacimiento" name="lnacimiento" required>
-                                            @include('layouts.optionsmunicipios')
+
                                         </select>
                                         <div class="select-arrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -223,7 +230,7 @@
                                 <div class="m-0 col">
                                     <div class="select-container">
                                         <select class="form-control border border-dark" id="lexpedicion" name="lexpedicion" required>
-                                            @include('layouts.optionsmunicipios')
+
                                         </select>
                                         <div class="select-arrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -414,7 +421,7 @@
                                     <div class="m-0 col">
                                             <div class="select-container">
                                                 <select class="form-control border border-dark" id="ciudadempresa" name="ciudadempresa" required>
-                                                    @include('layouts.optionsmunicipios')
+
                                                 </select>
                                                 <div class="select-arrow">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -461,7 +468,7 @@
                                     <div class="col">
                                         <div class="d-flex align-items-center">
                                             <div class="select-container" >
-                                                <select name="code1" id="code1" class="form-control border border-dark me-2">
+                                                <select name="code1" id="code1" class="form-control border border-dark me-2" style="width: 400px">
                                                     @include('layouts.optionscellphone')
                                                 </select>
                                                 <div class="select-arrow" style="right: 10px;">

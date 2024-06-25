@@ -26,10 +26,12 @@ class AsociacionController extends Controller
             'fechaexpedicion' => $request->mesdiaexpedicion.'/'.$request->diaexpedicion.'/'.$request->anioexpedicion,
             'lexpedicion' => $request->lexpedicion,
             'dcorrespondencia' => $request->dcorrespondencia,
+            'ciudcorrespondencia' => $request->ciudcorrespondencia,
             'genero' => $request->genero,
             'ciudad' => $request->ciudad,
             'fnacimiento' => $request->mes.'/'.$request->dia.'/'.$request->anio,
             'dresidencia' => $request->dresidencia,
+            'ciudadresidencia' => $request->ciudadresidencia,
             'empresatrabaja' => $request->empresatrabaja,
             'dtrabajo' => $request->dtrabajo,
             'cargo' => $request->cargo,
@@ -59,13 +61,20 @@ class AsociacionController extends Controller
         }
 
 
-        return back()->with("correcto","<span class='fs-4'>".$mensaje." su solicitud ha sido registrada correctamente!<br><span class='text-dark fw-bold'>Fecha:</span> " . $currentDate . "<br><span class='text-dark fw-bold'>Agencia:</span> " . $request->ciudad . "<br> <span class='text-dark fw-bold'>Su número de solicitud es:</span> <span class='badge bg-primary fw-bold'>" . $insertedId . "</span>.</span>");
+        return back()->with("correcto","<span class='fs-4'>".$mensaje." su solicitud ha sido registrada correctamente!<br><span class='text-dark fw-bold'>Fecha:</span> " . $currentDate . "<br> <span class='text-dark fw-bold'>Su número de solicitud es:</span> <span class='badge bg-primary fw-bold'>" . $insertedId . "</span>.</span>");
     }
 
-    public function agencias()
-    {
-        $agencias = DB::select("SELECT * FROM agencias ORDER BY NameAgencia ASC");
+    // public function agencias()
+    // {
+    //     $agencias = DB::select("SELECT * FROM agencias ORDER BY NameAgencia ASC");
 
-        return view('/asociacion', ['agencias' => $agencias]);
+    //     return view('/asociacion', ['agencias' => $agencias]);
+    // }
+
+    public function municipios()
+    {
+        $municipios = DB::select("SELECT * FROM municipios ORDER BY municipio ASC");
+
+        return view('/asociacion', ['municipios' => $municipios]);
     }
 }
