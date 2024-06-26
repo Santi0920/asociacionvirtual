@@ -122,8 +122,8 @@
                                         <h3 class="fw-semibold"><span>Fecha: </span><span class="text-dark" id="fecha"></span></h3>
                                         <div class="select-container">
                                             <select id="ciudad" name="ciudad" class="form-control border border-dark text-center fw-bold fs-5 blink" style="" required>
-                                                @foreach($agencias as $agencia)
-                                                <option value="{{ $agencia->NameAgencia }}">{{ $agencia->NameAgencia }}</option>
+                                                @foreach($municipios as $municipio)
+                                                    <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
                                                 @endforeach
                                             </select>
                                             <div class="select-arrow" style="right: 40px">
@@ -193,7 +193,9 @@
                                 <div class="m-0 col">
                                     <div class="select-container">
                                         <select class="form-control border border-dark" id="lnacimiento" name="lnacimiento" required>
-
+                                            @foreach($municipios as $municipio)
+                                                <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                            @endforeach
                                         </select>
                                         <div class="select-arrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -230,7 +232,9 @@
                                 <div class="m-0 col">
                                     <div class="select-container">
                                         <select class="form-control border border-dark" id="lexpedicion" name="lexpedicion" required>
-
+                                            @foreach($municipios as $municipio)
+                                                <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                            @endforeach
                                         </select>
                                         <div class="select-arrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -239,6 +243,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                </div>
+                                <!-- Direccion de residencia : -->
+                                <div class="row m-0 g-3 mb-2 align-items-center my-5">
+                                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                                        <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">11. </span> Dirección de residencia:</label>
+                                    </div>
+                                    <div class="m-0 col">
+                                        <input type="text" id="dresidencia" class="form-field form-control  border border-dark" placeholder="Dirección residencia" name="dresidencia" required>
+                                    </div>
                                 </div>
 
                             </div>
@@ -271,12 +284,12 @@
                                 </div>
                                 <!-- Fecha de nacimiento : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
-                                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                                    <div class="col-sm-12 col-md-12 col-lg-auto">
                                         <label for="fecha_nacimiento" class="col-form-label">
                                             <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">6. </span>Fecha de nacimiento:&nbsp;&nbsp;
                                         </label>
-                                        <div style="display: inline-block;">
-                                            <select id="dia" name="dia" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                                        <div class="d-inline-flex align-items-center">
+                                            <select id="dia" name="dia" required class="form-control border border-dark" style="width: 45px">
                                                 <script>
                                                     for (let i = 1; i <= 31; i++) {
                                                         document.write('<option value="' + i + '">' + i + '</option>');
@@ -284,7 +297,7 @@
                                                 </script>
                                             </select>
 
-                                            <select id="mes" name="mes" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                                            <select id="mes" name="mes" required class="form-control border border-dark">
                                                 <option value="Enero">Enero</option>
                                                 <option value="Febrero">Febrero</option>
                                                 <option value="Marzo">Marzo</option>
@@ -299,7 +312,7 @@
                                                 <option value="Diciembre">Diciembre</option>
                                             </select>
 
-                                            <select id="anio" name="anio" required style="display: inline-block; width: auto;" class="form-control  border border-dark">
+                                            <select id="anio" name="anio" required class="form-control border border-dark" style="width: 65px">
                                                 <script>
                                                     const yearNow = new Date().getFullYear();
                                                     const yearMin = yearNow - 18;
@@ -311,6 +324,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- No de identificación : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
@@ -322,13 +336,12 @@
                                 </div>
                                 <!-- Fecha de expedición : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
-                                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                                    <div class="col-sm-12 col-md-12 col-lg-auto">
                                         <label for="" class="col-form-label">
                                             <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">10. </span>Fecha de expedición:&nbsp;&nbsp;
                                         </label>
-                                        <div style="display: inline-block;">
-                                            <select id="diadiaexpedicion" name="diaexpedicion" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
-                                                <!-- Generar los días del 1 al 31 -->
+                                        <div class="d-inline-flex align-items-center">
+                                            <select id="diadiaexpedicion" name="diadiaexpedicion" required class="form-control border border-dark" style="width: 45px">
                                                 <script>
                                                     for (let i = 1; i <= 31; i++) {
                                                         document.write('<option value="' + i + '">' + i + '</option>');
@@ -336,7 +349,7 @@
                                                 </script>
                                             </select>
 
-                                            <select id="mesdiaexpedicion" name="mesdiaexpedicion" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                                            <select id="mesdiaexpedicion" name="mesdiaexpedicion" required class="form-control border border-dark">
                                                 <option value="Enero">Enero</option>
                                                 <option value="Febrero">Febrero</option>
                                                 <option value="Marzo">Marzo</option>
@@ -351,7 +364,7 @@
                                                 <option value="Diciembre">Diciembre</option>
                                             </select>
 
-                                            <select id="anioexpedicion" name="anioexpedicion" required style="display: inline-block; width: auto;" class="form-control  border border-dark">
+                                            <select id="anioexpedicion" name="anioexpedicion" required class="form-control border border-dark" style="width: 65px">
                                                 <script>
                                                     const yearNow2 = new Date().getFullYear();
                                                     const yearMin2 = yearNow2 - 18;
@@ -360,28 +373,38 @@
                                                     }
                                                 </script>
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <!-- Ciudad de Residencia : -->
+                                <div class="row m-0 g-3 mb-2 align-items-center">
+                                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto my-2">
+                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span>Ciudad de residencia :</label>
+                                    </div>
+                                    <div class="m-0 col">
+                                        <div class="select-container">
+                                            <select class="form-field form-control border border-dark" id="ciudadresidencia" name="ciudadresidencia" required>
+                                                @foreach($municipios as $municipio)
+                                                    <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="select-arrow">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                                <path d="m6 9 6 6 6-6"/>
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                            <!-- ========== Dirección residencia ========== -->
-                            <div class="col-12 col-md-12 col-lg-12">
-                                <div class="row m-0 g-3 mb-2 align-items-center">
-                                <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="residencia" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">11. </span>Dirección residencia :</label>
-                                </div>
-                                <div class="m-0 col">
-                                    <input type="text" id="dresidencia" class="form-control  border border-dark" placeholder="Dirección residencia" name="dresidencia" required>
-                                </div>
-                                </div>
-                            </div>
+
                             <!-- ========== Empresa donde trabaja ========== -->
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span>Empresa donde trabaja :</label>
+                                    <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Empresa donde trabaja :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="empresatrabaja" class="form-control  border border-dark" placeholder="Empresa donde trabaja" name="empresatrabaja" required>
@@ -390,23 +413,34 @@
                             </div>
                             <!-- ========== Lado Derecho ========== -->
                             <div class="col-12 col-md-12 col-lg-6">
-                                <!-- Dirección trabajo : -->
+                                <!-- Dirección Empresa : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Dirección trabajo :</label>
+                                    <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Dirección Empresa :</label>
                                 </div>
                                 <div class="m-0 col">
-                                    <input type="text" id="dtrabajo" class="form-control  border border-dark" placeholder="Dirección trabajo" name="dtrabajo" required>
+                                    <input type="text" id="dtrabajo" class="form-control  border border-dark" placeholder="Dirección Empresa" name="dtrabajo" required>
                                 </div>
                                 </div>
                                 <!-- Cargo : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
-                                <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Cargo :</label>
+                                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                                        <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Cargo :</label>
+                                    </div>
+                                    <div class="m-0 col">
+                                        <input type="text" id="cargo" class="form-control  border border-dark" placeholder="Cargo" name="cargo" required>
+                                    </div>
                                 </div>
-                                <div class="m-0 col">
-                                    <input type="text" id="cargo" class="form-control  border border-dark" placeholder="Cargo" name="cargo" required>
-                                </div>
+                                <!-- ========== Dirección de correspondencia ========== -->
+                                <div class="row m-0 g-3 mb-2 align-items-center">
+                                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
+                                        <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>D. de
+                                            correspondencia :</label>
+                                    </div>
+                                    <div class="m-0 col">
+                                        <input type="text" id="dcorrespondencia" class="form-field form-control  border border-dark"
+                                        placeholder="Dirección de correspondencia" name="dcorrespondencia" required>
+                                    </div>
                                 </div>
                             </div>
                             <!-- ========== Lado Izquierdo ========== -->
@@ -414,14 +448,15 @@
                                 <!-- Ciudad de la empresa : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Ciudad de la empresa
-                                        :</label>
+                                    <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Ciudad de la empresa:</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div class="m-0 col">
                                             <div class="select-container">
                                                 <select class="form-control border border-dark" id="ciudadempresa" name="ciudadempresa" required>
-
+                                                    @foreach($municipios as $municipio)
+                                                        <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                                    @endforeach
                                                 </select>
                                                 <div class="select-arrow">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -435,7 +470,7 @@
                                 <!-- Tiempo en el cargo : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Tiempo en el cargo :</label>
+                                    <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Tiempo en el cargo :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div style="display: inline-block;">
@@ -444,18 +479,26 @@
                                     </div>
                                 </div>
                                 </div>
-                            </div>
-                            <!-- ========== Dirección de correspondencia ========== -->
-                            <div class="col-12 col-md-12 col-lg-12">
+
+                                <!-- Ciudad de Correspondencia : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
-                                <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Dirección de
-                                        correspondencia :</label>
-                                </div>
-                                <div class="m-0 col">
-                                        <input type="text" id="dcorrespondencia" class="form-control  border border-dark"
-                                        placeholder="Dirección de correspondencia" name="dcorrespondencia" required>
-                                </div>
+                                    <div class="m-0 col-sm-12 col-md-12 col-lg-auto my-2">
+                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>C. de Correspondencia :</label>
+                                    </div>
+                                    <div class="m-0 col">
+                                        <div class="select-container">
+                                            <select class="form-field form-control border border-dark" id="ciudcorrespondencia" name="ciudcorrespondencia" required>
+                                                @foreach($municipios as $municipio)
+                                                    <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="select-arrow">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                                <path d="m6 9 6 6 6-6"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- ========== Lado Derecho ========== -->
@@ -463,12 +506,12 @@
                                 <!-- Celular #1 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>Celular #1:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>Celular #1:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
                                             <div class="select-container" >
-                                                <select name="code1" id="code1" class="form-control border border-dark me-2" style="width: 400px">
+                                                <select name="code1" id="code1" class="form-control border border-dark me-2" style="width: 300px">
                                                     @include('layouts.optionscellphone')
                                                 </select>
                                                 <div class="select-arrow" style="right: 10px;">
@@ -485,12 +528,12 @@
                                 <!-- WhatsApp #1 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>Whatsapp #1:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Whatsapp #1:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
                                             <div class="select-container">
-                                                <select name="code1whatsapp" id="code1whatsapp" class="form-control border border-dark me-2">
+                                                <select name="code1whatsapp" id="code1whatsapp" class="form-control border border-dark me-2" style="width: 300px">
                                                     @include('layouts.optionscellphone')
                                                 </select>
                                                 <div class="select-arrow" style="right: 10px;">
@@ -509,12 +552,12 @@
                                 <!-- Celular #2 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>Celular #2:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Celular #2:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
                                             <div class="select-container">
-                                                <select name="code2" id="code2" class="form-control border border-dark me-2">
+                                                <select name="code2" id="code2" class="form-control border border-dark me-2" style="width: 300px">
                                                     @include('layouts.optionscellphone')
                                                 </select>
                                                 <div class="select-arrow" style="right: 10px;">
@@ -530,12 +573,12 @@
                                 <!-- WhatsApp #2 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Whatsapp #2:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Whatsapp #2:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
                                             <div class="select-container">
-                                                <select name="code2whatsapp" id="code1" class="form-control border border-dark me-2">
+                                                <select name="code2whatsapp" id="code1" class="form-control border border-dark me-2" style="width: 300px">
                                                     @include('layouts.optionscellphone')
                                                 </select>
                                                 <div class="select-arrow" style="right: 10px;">
@@ -553,7 +596,7 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Correo electronico :</label>
+                                    <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">24. </span>Correo electronico :</label>
                                 </div>
                                 <div class="row m-0">
                                     <div class="col">
@@ -567,8 +610,8 @@
                             <!-- ========== Se autoriza a Coopserp para que consulte en las centrales de riesgo ========== -->
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
-                                <div class="m-0 col-auto">
-                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Usted autoriza a Coopserp para que
+                                    <div class="m-0 col-auto">
+                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">25. </span>Usted autoriza a Coopserp para que
                                             consulte sus datos en las
                                             centrales de
                                             riesgo :</label>
@@ -584,7 +627,31 @@
                                         <div class="invalid-feedback">
                                             Seleccionar una opción.
                                         </div>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <!-- ========== Vincular asociado a la agencia ========== -->
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <div class="row m-0 g-3 mb-2 align-items-center">
+                                    <div class="m-0 col-auto">
+                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">26. </span>Vincular asociado a la agencia :</label>
+                                    </div>
+                                    <div class="m-0 col">
+                                        <div class="select-container">
+                                            <select class="form-control border border-dark fw-bold" id="agencia" name="agencia" required>
+                                                <option value="" class="fw-bold" disabled selected>Seleccionar Agencia</option>
+                                                @foreach($agencias as $agencia)
+                                                <option value="{{ $agencia->NameAgencia }}">{{ $agencia->NameAgencia }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="select-arrow">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                                    <path d="m6 9 6 6 6-6"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             </div>

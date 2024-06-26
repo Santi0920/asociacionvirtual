@@ -31,6 +31,9 @@ class AdminController extends Controller
     public function agencias()
     {
         $agencias = DB::select("SELECT * FROM agencias ORDER BY NameAgencia ASC");
-        return view('admin/fase1', ['agencias' => $agencias]);
+        $municipios = DB::select("SELECT * FROM municipios ORDER BY municipio ASC");
+        return view('admin/fase1', ['agencias' => $agencias, 'municipios' => $municipios]);
     }
+
+
 }

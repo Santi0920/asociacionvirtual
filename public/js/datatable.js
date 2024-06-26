@@ -109,6 +109,7 @@ function openModal(paramIdRow) {
             }else{
                 $("#no").prop('checked', true);
             }
+
             $("#ciudad").prepend(options);
             $("#nombre").val(data.nombre)
             $("#apellidos").val(data.apellidos.toUpperCase())
@@ -128,6 +129,8 @@ function openModal(paramIdRow) {
                 $("#TI").prop('checked', true);
             }
             $("#noidentificacion").val(data.noidentificacion)
+
+
 
             var optionlnacimiento = '<option value="' + data.lnacimiento + '" selected disabled>' + data.lnacimiento + '</option>';
             $("#lnacimiento").prepend(optionlnacimiento);
@@ -159,11 +162,19 @@ function openModal(paramIdRow) {
 
 
             $("#dresidencia").val(data.dresidencia)
+
+            var optionciudadresidencia = '<option value="' + data.ciudadresidencia + '" selected disabled>' + data.ciudadresidencia + '</option>';
+            $("#ciudadresidencia").prepend(optionciudadresidencia);
+
+
             $("#empresatrabaja").val(data.empresatrabaja)
             $("#dtrabajo").val(data.dtrabajo)
             $("#cargo").val(data.cargo)
             $("#tiempocargo").val(data.tiempocargo)
             $("#dcorrespondencia").val(data.dcorrespondencia)
+
+            var optioncorrespondencia = '<option value="' + data.ciudcorrespondencia + '" selected disabled>' + data.ciudcorrespondencia + '</option>';
+            $("#ciudcorrespondencia").prepend(optioncorrespondencia);
 
             var optionciudadempresa = '<option value="' + data.ciudadempresa + '" selected disabled>' + data.ciudadempresa + '</option>';
             $("#ciudadempresa").prepend(optionciudadempresa);
