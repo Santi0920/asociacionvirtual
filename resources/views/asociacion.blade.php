@@ -42,7 +42,7 @@
                             <h3 class="fw-semibold fs-4"><span>Lugar desde donde nos escribe:</span></h3>
                             <div class="select-container">
 
-                                <select id="ciudad" name="ciudad" class="form-control border border-dark text-center fw-bold fs-5 blink" required>
+                                <select id="ciudad" name="ciudad" class="form-field form-control border border-dark text-center fw-bold fs-5 blink" required>
                                   <option value="" selected disabled>Seleccionar Municipio</option>
                                   @foreach($municipios as $municipio)
                                     <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
@@ -87,10 +87,10 @@
                         <label class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">1. </span>Primera vez que se vincula? :</label>
                     </div>
                     <div class="m-0 col-auto form-check">
-                            <input type="radio" class="btn-check"  name="vinculado" id="si" autocomplete="off" value="SI" required>
+                            <input type="radio" class="btn-check form-field"  name="vinculado" id="si" autocomplete="off" value="SI" required>
                             <label class="btn btn-outline-primary" for="si">SI</label>
 
-                            <input type="radio" class="btn-check"  name="vinculado" id="no" autocomplete="off" value="NO" required>
+                            <input type="radio" class="btn-check form-field"  name="vinculado" id="no" autocomplete="off" value="NO" required>
                             <label class="btn btn-outline-primary" for="no">NO</label>
                             <div class="invalid-feedback">
                                 Seleccionar una opción.
@@ -101,20 +101,20 @@
                     <!-- Nombre : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">3. </span> Nombre(s) :</label>
+                        <label for="nombre" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">3. </span> Nombre(s) :</label>
                     </div>
                     <div class="m-0 col">
-                        <input type="text" id="nombre" class="form-control  border border-dark" placeholder="Nombre" name="nombre" required>
+                        <input type="text" id="nombre" class="form-field form-control  border border-dark" placeholder="Nombre" name="nombre" required>
                     </div>
                     </div>
                     <!-- Lugar de Nacimiento : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="nacimiento" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">5. </span>Lugar de Nacimiento :</label>
+                        <label for="nacimiento" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">5. </span>Lugar de Nacimiento :</label>
                     </div>
                     <div class="m-0 col">
                         <div class="select-container">
-                            <select class="form-control border border-dark" id="" name="lnacimiento" required>
+                            <select class="form-field form-control border border-dark" id="" name="lnacimiento" required>
                                 <option value=""  selected disabled>Seleccionar Opción</option>
                                 @foreach($municipios as $municipio)
                                     <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
@@ -134,13 +134,13 @@
                         <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">7. </span>Tipo de Identificación? :</label>
                     </div>
                     <div class="m-0 col-auto form-check text-center">
-                            <input type="radio" class="btn-check" name="tidentificacion" id="CC" autocomplete="off" value="C.C" required>
+                            <input type="radio" class="form-field btn-check" name="tidentificacion" id="CC" autocomplete="off" value="C.C" required>
                             <label class="btn btn-outline-secondary" for="CC">C.C</label>
 
-                            <input type="radio" class="btn-check" name="tidentificacion" id="CE" autocomplete="off" value="C.E" required>
+                            <input type="radio" class="form-field btn-check" name="tidentificacion" id="CE" autocomplete="off" value="C.E" required>
                             <label class="btn btn-outline-secondary" for="CE">C.E</label>
 
-                            <input type="radio" class="btn-check" name="tidentificacion" id="TI" autocomplete="off" value="T.I" required>
+                            <input type="radio" class="form-field btn-check" name="tidentificacion" id="TI" autocomplete="off" value="T.I" required>
                             <label class="btn btn-outline-secondary" for="TI">T.I</label>
                             <div class="invalid-feedback">
                                 Seleccionar una opción.
@@ -150,11 +150,11 @@
                     <!-- Lugar de expedición : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="expedicion" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">9. </span>Lugar de expedición :</label>
+                        <label for="expedicion" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">9. </span>Lugar de expedición :</label>
                     </div>
                     <div class="m-0 col">
                         <div class="select-container">
-                            <select class="form-control border border-dark" id="" name="lexpedicion" required>
+                            <select class="form-field form-control border border-dark" id="" name="lexpedicion" required>
                                 <option value=""  selected disabled>Seleccionar Opción</option>
                                 @foreach($municipios as $municipio)
                                     <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
@@ -165,16 +165,19 @@
                                   <path d="m6 9 6 6 6-6"/>
                                 </svg>
                             </div>
+                            <div class="invalid-feedback">
+                                Seleccionar una opción.
+                            </div>
                         </div>
                     </div>
                     </div>
                     <!-- Direccion de residencia : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                         <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                            <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">11. </span> Dirección de residencia:</label>
+                            <label for="nombre" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">11. </span> Dirección de residencia:</label>
                         </div>
                         <div class="m-0 col">
-                            <input type="text" id="residencia" class="form-control  border border-dark" placeholder="Dirección residencia" name="dresidencia" required>
+                            <input type="text" id="residencia" class="form-field form-control  border border-dark" placeholder="Dirección residencia" name="dresidencia" required>
                         </div>
                     </div>
 
@@ -187,10 +190,10 @@
                         <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">2. </span>Genero :</label>
                     </div>
                     <div class="m-0 col-auto form-check">
-                            <input type="radio" class="btn-check" name="genero" id="hombre" autocomplete="off" value="M" required>
+                            <input type="radio" class="form-field btn-check" name="genero" id="hombre" autocomplete="off" value="M" required>
                             <label class="btn btn-outline-primary" for="hombre">M</label>
 
-                            <input type="radio" class="btn-check" name="genero" id="mujer" autocomplete="off" value="F" required>
+                            <input type="radio" class="form-field btn-check" name="genero" id="mujer" autocomplete="off" value="F" required>
                             <label class="btn btn-outline-primary" for="mujer">F</label>
                             <div class="invalid-feedback">
                                 Seleccionar una opción.
@@ -200,10 +203,10 @@
                     <!-- Apellidos : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="apellidos" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">4. </span>Apellidos :</label>
+                        <label for="apellidos" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">4. </span>Apellidos :</label>
                     </div>
                     <div class="m-0 col">
-                        <input type="text" id="apellidos" class="form-control border border-dark" placeholder="APELLIDOS" name="apellidos" style="text-transform: uppercase;" required>
+                        <input type="text" id="apellidos" class="form-field form-control border border-dark" placeholder="APELLIDOS" name="apellidos" style="text-transform: uppercase;" required>
                     </div>
                     </div>
                     <!-- Fecha de nacimiento : -->
@@ -213,7 +216,7 @@
                                 <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">6. </span>Fecha de nacimiento:&nbsp;&nbsp;
                             </label>
                             <div style="display: inline-block;">
-                                <select id="dia" name="dia" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                                <select id="dia" name="dia" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-field form-control border border-dark">
                                     <option value="">Día</option>
                                     <script>
                                         for (let i = 1; i <= 31; i++) {
@@ -222,7 +225,7 @@
                                     </script>
                                 </select>
 
-                                <select id="mes" name="mes" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                                <select id="mes" name="mes" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-field form-control  border border-dark">
                                     <option value="">Mes</option>
                                     <option value="Enero">Enero</option>
                                     <option value="Febrero">Febrero</option>
@@ -238,7 +241,7 @@
                                     <option value="Diciembre">Diciembre</option>
                                 </select>
 
-                                <select id="anio" name="anio" required style="display: inline-block; width: auto;" class="form-control  border border-dark">
+                                <select id="anio" name="anio" required style="display: inline-block; width: auto;" class="form-field form-control  border border-dark">
                                     <option value="">Año</option>
                                     <!-- Generar los años desde el año actual menos 18 hasta un año razonable en el pasado -->
                                     <script>
@@ -249,16 +252,19 @@
                                         }
                                     </script>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Seleccionar una opción.
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- No de identificación : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="input2" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">8. </span>No de identificación :</label>
+                        <label for="input2" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">8. </span>No de identificación :</label>
                     </div>
                     <div class="m-0 col">
-                        <input type="number" id="input2" class="form-control  border border-dark" placeholder="No de identificación" name="noidentificacion" required>
+                        <input type="number" id="input2" class="form-field form-control  border border-dark" placeholder="No de identificación" name="noidentificacion" required>
                     </div>
                     </div>
                     <!-- Fecha de expedición : -->
@@ -268,7 +274,7 @@
                                 <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">10. </span>Fecha de expedición:&nbsp;&nbsp;
                             </label>
                             <div style="display: inline-block;">
-                                <select id="diadiaexpedicion" name="diaexpedicion" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                                <select id="diadiaexpedicion" name="diaexpedicion" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-field form-control  border border-dark">
                                     <option value="">Día</option>
                                     <!-- Generar los días del 1 al 31 -->
                                     <script>
@@ -278,7 +284,7 @@
                                     </script>
                                 </select>
 
-                                <select id="mesdiaexpedicion" name="mesdiaexpedicion" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                                <select id="mesdiaexpedicion" name="mesdiaexpedicion" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-field form-control  border border-dark">
                                     <option value="">Mes</option>
                                     <option value="Enero">Enero</option>
                                     <option value="Febrero">Febrero</option>
@@ -294,7 +300,7 @@
                                     <option value="Diciembre">Diciembre</option>
                                 </select>
 
-                                <select id="anio" name="anioexpedicion" required style="display: inline-block; width: auto;" class="form-control  border border-dark">
+                                <select id="anio" name="anioexpedicion" required style="display: inline-block; width: auto;" class="form-field form-control  border border-dark">
                                     <option value="">Año</option>
                                     <script>
                                         const yearNow2 = new Date().getFullYear();
@@ -312,11 +318,11 @@
                     <!-- Ciudad de Residencia : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                         <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                            <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span>Ciudad de residencia :</label>
+                            <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span>Ciudad de residencia :</label>
                         </div>
                         <div class="m-0 col">
                             <div class="select-container">
-                                <select class="form-control border border-dark" id="" name="ciudadresidencia" required>
+                                <select class="form-field form-control border border-dark" id="" name="ciudadresidencia" required>
                                     <option value=""  selected disabled>Seleccionar Opción</option>
                                     @foreach($municipios as $municipio)
                                         <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
@@ -337,10 +343,10 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Empresa donde trabaja :</label>
+                        <label for="empresa" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Empresa donde trabaja :</label>
                     </div>
                     <div class="m-0 col">
-                        <input type="text" id="empresa" class="form-control  border border-dark" placeholder="Empresa donde trabaja" name="empresatrabaja" required>
+                        <input type="text" id="empresa" class="form-field form-control  border border-dark" placeholder="Empresa donde trabaja" name="empresatrabaja" required>
                     </div>
                     </div>
                 </div>
@@ -349,30 +355,30 @@
                     <!-- Dirección trabajo : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Dirección trabajo :</label>
+                        <label for="trabajo" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Dirección Empresa :</label>
                     </div>
                     <div class="m-0 col">
-                        <input type="text" id="trabajo" class="form-control  border border-dark" placeholder="Dirección trabajo" name="dtrabajo" required>
+                        <input type="text" id="trabajo" class="form-field form-control  border border-dark" placeholder="Dirección Empresa" name="dtrabajo" required>
                     </div>
                     </div>
                     <!-- Cargo : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Cargo :</label>
+                        <label for="cargo" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Cargo :</label>
                     </div>
                     <div class="m-0 col">
-                        <input type="text" id="cargo" class="form-control  border border-dark" placeholder="Cargo" name="cargo" required>
+                        <input type="text" id="cargo" class="form-field form-control  border border-dark" placeholder="Cargo" name="cargo" required>
                     </div>
                     </div>
 
                 <!-- ========== Dirección de correspondencia ========== -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                         <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                            <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>Dirección de
+                            <label for="dir_correspondencias" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>Dirección de
                                 correspondencia :</label>
                         </div>
                         <div class="m-0 col">
-                            <input type="text" id="dir_correspondencias" class="form-control  border border-dark"
+                            <input type="text" id="dir_correspondencias" class="form-field form-control  border border-dark"
                             placeholder="Dirección de correspondencia" name="dcorrespondencia" required>
                         </div>
                     </div>
@@ -382,12 +388,12 @@
                     <!-- Ciudad de la empresa : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Ciudad de la empresa
+                        <label for="ciudad_empresa" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Ciudad de la empresa
                             :</label>
                     </div>
                     <div class="m-0 col">
                             <div class="select-container">
-                                <select class="form-control border border-dark" id="ciudad_empresa" name="ciudadempresa" required>
+                                <select class="form-field form-control border border-dark" id="ciudad_empresa" name="ciudadempresa" required>
                                     <option value=""  selected disabled>Seleccionar Opción</option>
                                     @foreach($municipios as $municipio)
                                         <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
@@ -404,11 +410,11 @@
                     <!-- Tiempo en el cargo : -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Tiempo en el cargo :</label>
+                        <label for="tiempo_cargo" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Tiempo en el cargo :</label>
                     </div>
                     <div class="m-0 col">
                         <div style="display: inline-block;">
-                            <select id="anios" name="anios" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                            <select id="anios" name="anios" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-field form-control  border border-dark">
                                 <option value="">Año(s)</option>
                                 <script>
                                     for (let i = 0; i <= 60; i++) {
@@ -416,7 +422,7 @@
                                     }
                                 </script>
                             </select>
-                            <select id="meses" name="meses" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-control  border border-dark">
+                            <select id="meses" name="meses" required style="display: inline-block; width: auto; margin-right: 10px;" class="form-field form-control  border border-dark">
                                 <option value="">Mese(s)</option>
                                 <script>
                                     for (let i = 0; i <= 11; i++) {
@@ -431,11 +437,11 @@
                     <!-- ========== Ciudad de correspondencia ========== -->
                     <div class="row m-0 g-3 mb-2 align-items-center">
                         <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                            <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>Ciudad de correspondencia :</label>
+                            <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>Ciudad de correspondencia :</label>
                         </div>
                         <div class="m-0 col">
                             <div class="select-container">
-                                <select class="form-control border border-dark" id="" name="ciudcorrespondencia" required>
+                                <select class="form-field form-control border border-dark" id="" name="ciudcorrespondencia" required>
                                     <option value=""  selected disabled>Seleccionar Opción</option>
                                     @foreach($municipios as $municipio)
                                         <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
@@ -456,12 +462,12 @@
                     <!-- Celular #1 : -->
                     <div class="row m-0 mb-2 align-items-center">
                         <div class="col-auto">
-                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>Celular #1:</label>
+                            <label for="code1" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>Celular #1:</label>
                         </div>
                         <div class="col">
                             <div class="d-flex align-items-center">
                                 <div class="select-container" >
-                                    <select name="code1" id="code1" class="form-control border border-dark me-2">
+                                    <select name="code1" id="code1" class="form-field form-control border border-dark me-2">
                                         @include('layouts.optionscellphone')
                                     </select>
                                     <div class="select-arrow" style="right: 10px;">
@@ -478,12 +484,12 @@
                     <!-- WhatsApp #1 : -->
                     <div class="row m-0 mb-2 align-items-center">
                         <div class="col-auto">
-                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Whatsapp #1:</label>
+                            <label for="code1" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Whatsapp #1:</label>
                         </div>
                         <div class="col">
                             <div class="d-flex align-items-center">
                                 <div class="select-container">
-                                    <select name="code1whatsapp" id="code1" class="form-control border border-dark me-2">
+                                    <select name="code1whatsapp" id="code1" class="form-field form-control border border-dark me-2">
                                         @include('layouts.optionscellphone')
                                     </select>
                                     <div class="select-arrow" style="right: 10px;">
@@ -492,7 +498,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <input type="number" id="whatsapp1" class="form-control border border-dark" placeholder="Número de celular" name="whatsapp1" required>
+                                <input type="number" id="whatsapp1" class="form-field form-control border border-dark" placeholder="Número de celular" name="whatsapp1" required>
                             </div>
                         </div>
                     </div>
@@ -502,12 +508,12 @@
                     <!-- Celular #2 : -->
                     <div class="row m-0 mb-2 align-items-center">
                         <div class="col-auto">
-                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Celular #2:</label>
+                            <label for="code1" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Celular #2:</label>
                         </div>
                         <div class="col">
                             <div class="d-flex align-items-center">
                                 <div class="select-container">
-                                    <select name="code2" id="code1" class="form-control border border-dark me-2">
+                                    <select name="code2" id="code1" class="form-field form-control border border-dark me-2">
                                         @include('layouts.optionscellphone')
                                     </select>
                                     <div class="select-arrow" style="right: 10px;">
@@ -516,19 +522,19 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <input type="number" id="celular2" class="form-control border border-dark" placeholder="Número de celular" name="celular2" required>
+                                <input type="number" id="celular2" class="form-field form-control border border-dark" placeholder="Número de celular" name="celular2" required>
                             </div>
                         </div>
                     </div>
                     <!-- WhatsApp #2 : -->
                     <div class="row m-0 mb-2 align-items-center">
                         <div class="col-auto">
-                            <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Whatsapp #2:</label>
+                            <label for="code1" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Whatsapp #2:</label>
                         </div>
                         <div class="col">
                             <div class="d-flex align-items-center">
                                 <div class="select-container">
-                                    <select name="code2whatsapp" id="code1" class="form-control border border-dark me-2">
+                                    <select name="code2whatsapp" id="code1" class="form-field form-control border border-dark me-2">
                                         @include('layouts.optionscellphone')
                                     </select>
                                     <div class="select-arrow" style="right: 10px;">
@@ -537,7 +543,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <input type="number" id="whatsapp2" class="form-control border border-dark" placeholder="Número de celular" name="whatsapp2" required>
+                                <input type="number" id="whatsapp2" class="form-field form-control border border-dark" placeholder="Número de celular" name="whatsapp2" required>
                             </div>
                         </div>
                     </div>
@@ -546,14 +552,14 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="row m-0 g-3 mb-2 align-items-center">
                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                        <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">24. </span>Correo electronico :</label>
+                        <label for="correo" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">24. </span>Correo electronico :</label>
                     </div>
                     <div class="row m-0">
                         <div class="col">
                             <div class="d-flex align-items-center">
-                                <input type="text" id="correo-usuario" class="form-control border border-dark me-2 w-25" placeholder="ejemplo123" name="correousuario" required>
+                                <input type="text" id="correo-usuario" class="form-field form-control border border-dark me-2 w-25" placeholder="ejemplo123" name="correousuario" required>
                                 <span class="me-2">@</span>
-                                <input type="text" id="correo-dominio" class="form-control border border-dark w-25" placeholder="dominio.com" name="correodominio" required>
+                                <input type="text" id="correo-dominio" class="form-field form-control border border-dark w-25" placeholder="dominio.com" name="correodominio" required>
                             </div>
                         </div>
                     </div>
@@ -569,11 +575,11 @@
                                 riesgo :</label>
                         </div>
                         <div class="m-0 px-3 col-12 col-md-12 col-lg-auto form-check text-center">
-                            <input type="radio" class="btn-check" name="autoriza" id="si-autoriza"
+                            <input type="radio" class="btn-check form-field" name="autoriza" id="si-autoriza"
                                 autocomplete="off" value="SI" required>
                             <label class="btn btn-outline-primary" for="si-autoriza">SI</label>
 
-                            <input type="radio" class="btn-check" name="autoriza" id="no-autoriza"
+                            <input type="radio" class="btn-check form-field" name="autoriza" id="no-autoriza"
                                 autocomplete="off" value="NO" required>
                             <label class="btn btn-outline-primary" for="no-autoriza">NO</label>
                             <div class="invalid-feedback">
@@ -586,22 +592,41 @@
                         <button id="asociarmeBtn" class="btn btn-success fs-5 fw-bold w-100" disabled type="submit">¡ASOCIARME!</button>
                     </div>
                     <script>
-                        document.getElementById('asociarmeBtn').disabled = false;
-
                         document.getElementById('asociarmeBtn').addEventListener('click', function() {
-                            Swal.fire({
-                                title: 'Cargando...',
-                                allowOutsideClick: false,
-                                didOpen: () => {
-                                    Swal.showLoading()
+                            const formFields = document.querySelectorAll('.form-field');
+                            let allFieldsFilled = true;
+
+                            formFields.forEach(field => {
+                                if (!field.value) {
+                                    field.classList.add('error');
+                                    allFieldsFilled = false;
+                                } else {
+                                    field.classList.remove('error');
                                 }
                             });
 
-                            setTimeout(() => {
-                                Swal.close();
-                            }, 3000);
+                            if (allFieldsFilled) {
+                                Swal.fire({
+                                    title: 'Cargando...',
+                                    allowOutsideClick: false,
+                                    didOpen: () => {
+                                        Swal.showLoading();
+                                    }
+                                });
+
+                                setTimeout(() => {
+                                    Swal.close();
+                                }, 3000);
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Faltan campos por completar, se encuentran en color rojo.',
+                                    icon: 'error',
+                                    confirmButtonColor: '#646464'
+                                });
+                            }
                         });
-                       </script>
+                    </script>
                 </div>
             </form>
          </div>
@@ -609,6 +634,10 @@
    </div>
 
    <style>
+        .error {
+            border-color: red;
+        }
+
       .tamanio  d-none d-sm-none d-md-none d-lg-inline{
          font-size: 18px;
       }
