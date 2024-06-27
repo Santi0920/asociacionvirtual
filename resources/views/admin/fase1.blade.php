@@ -99,9 +99,10 @@
                     </button>
                 </div>
                 <div class="modal-body text-dark">
-                    <form action="{{ route('fase1') }}" method="POST" class="needs-validation" novalidate>
+                    <form action="{{route('validarfase2')}}" method="POST" class="needs-validation" novalidate id="modalf1">
                             @csrf
                             <!-- Logo Coopserp/Titulo/Formato/Consecutivo -->
+                            <input type="text" value="" name="id" id="id" class="d-none">
                             <div class="row m-0 p-3 pb-0 justify-content-center align-items-center">
                             <div class="col-12 col-sm-12 col-md-12 col-lg-4 d-none d-md-none d-lg-block">
                                 <img width="100%" height="200" src="https://www.coopserp.com/permiso/img/logoCoopserp.svg" alt="https://www.coopserp.com/permiso/img/logoCoopserp.svg">
@@ -115,7 +116,7 @@
                                         <h1 class="h1 fw-bold m-0">F1</h1>
                                     </div>
                                     <div class="col-6 text-center p-3">
-                                        <h1 class="h1 fw-bold m-0 text-danger" id="numeroAutorizacion">No.01</h1>
+                                        <h1 class="h1 fw-bold m-0 text-danger" id="numeroAutorizacion"></h1>
                                     </div>
                                 </div>
                                 <div class="row text-center">
@@ -650,18 +651,22 @@
                                                     <path d="m6 9 6 6 6-6"/>
                                                 </svg>
                                             </div>
+                                            <div class="invalid-feedback">
+                                                Seleccionar una opción.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             </div>
-                        </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary w-100 fs-5"
                     data-bs-dismiss="modal" aria-label="Close" onclick="hideModal()">Cerrar</button>
-                    <button type="button" class="btn btn-primary w-100 fs-5 d-none">Validar (Fase 2)</button>
+                    <button type="submit" class="btn btn-primary w-100 fs-5">Validar (Fase 2)</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>

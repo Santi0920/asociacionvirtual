@@ -77,4 +77,11 @@ class AsociacionController extends Controller
 
         return view('/asociacion', ['municipios' => $municipios]);
     }
+
+
+    public function datosf2(){
+        
+
+
+    }
 }

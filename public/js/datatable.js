@@ -100,6 +100,8 @@ function openModal(paramIdRow) {
 
 
        if (data) {
+
+            $("#id").val(data.id)
             var options = '<option value="' + data.ciudad + '" selected disabled>' + data.ciudad + '</option>';
             $("#fecha").html(data.fechaAccion)
             $("#numeroAutorizacion").html('No. '+data.id)

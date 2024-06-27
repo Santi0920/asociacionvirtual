@@ -22,7 +22,7 @@
                 @csrf
                 <!-- Logo Coopserp/Titulo/Formato/Consecutivo -->
                 <div class="row m-0 p-3 pb-0 justify-content-center align-items-center">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4 d-none d-md-none d-lg-block">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
                     <img width="100%" height="200" src="https://www.coopserp.com/permiso/img/logoCoopserp.svg" alt="https://www.coopserp.com/permiso/img/logoCoopserp.svg">
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
@@ -557,9 +557,9 @@
                     <div class="row m-0">
                         <div class="col">
                             <div class="d-flex align-items-center">
-                                <input type="text" id="correo-usuario" class="form-field form-control border border-dark me-2 w-25" placeholder="ejemplo123" name="correousuario" required>
+                                <input type="text" id="correo-usuario" class="form-field form-control border border-dark me-2 w-50" placeholder="ejemplo123" name="correousuario" required>
                                 <span class="me-2">@</span>
-                                <input type="text" id="correo-dominio" class="form-field form-control border border-dark w-25" placeholder="dominio.com" name="correodominio" required>
+                                <input type="text" id="correo-dominio" class="form-field form-control border border-dark w-50" placeholder="dominio.com" name="correodominio" required>
                             </div>
                         </div>
                     </div>
