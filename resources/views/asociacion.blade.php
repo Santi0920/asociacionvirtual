@@ -634,10 +634,6 @@
    </div>
 
    <style>
-        .error {
-            border-color: red;
-        }
-
       .tamanio  d-none d-sm-none d-md-none d-lg-inline{
          font-size: 18px;
       }
@@ -662,6 +658,9 @@
             transform: translateY(-50%);
         }
 
+        .select-arrow svg {
+            stroke: black;
+        }
 
    </style>
 

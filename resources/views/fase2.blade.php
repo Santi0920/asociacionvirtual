@@ -32,14 +32,14 @@
                             </div>
                         </div>
                         <div class="row text-center">
-                                <h3 class="fw-semibold"><span>Fecha: </span><span class="text-dark">Junio 26 2024, 12:10:36 p. m.</span></h3>
-                                <h3 class="fw-semibold fs-4"><span>Lugar desde donde nos escribe: <span class="fw-bold text-dark">La Unión-Valle del Cauca</span></span></h3>
+                                <h3 class="fw-semibold"><span>Fecha: </span><br><span class="text-dark">{{$fechavinculacion}}</span></h3>
+                                <h3 class="fw-semibold fs-4"><span>Lugar desde donde nos escribe: <span class="fw-bold text-dark">{{$ciudadescribe}}</span></span></h3>
                         </div>
                     </div>
                 </div>
                 <div class="row m-0 my-2">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <h2 class="fw-bold">FORMATO PARA USO<br>
+                        <h2 class="fw-bold fs-1">FORMATO PARA USO<br>
                             EXCLUSIVO DE COOPSERP
                         </h2>
                     </div>
@@ -52,7 +52,7 @@
                                     <label for="" class="fs-4 text-start
                                      text-lg-end fw-bold">1. <span
                                             class="fw-normal">Cuenta: <span
-                                                class="fw-medium fs-2 text-danger">58</span></span></label>
+                                                class="fw-medium fs-2 text-danger">{{$cuenta}}</span></span></label>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0">
@@ -60,7 +60,7 @@
                                     <label for="" class="fs-4 text-start
                                      text-lg-end fw-bold">2. <span
                                             class="fw-normal">Agencia: <span
-                                                class="fw-medium fs-2 text-danger">30 - Cali BC</span></span></label>
+                                                class="fw-medium fs-2 text-danger">{{$noAgencia}} - {{$agencia}}</span></span></label>
                                 </div>
                             </div>
                         </div>
@@ -72,16 +72,16 @@
                         <div class="row m-0">
                             <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0">
                                 <div class="text-start">
-                                    <label for="" class="fs-4 text-end fw-bold">3. <span
+                                    <label for="" class="fs-4 fw-bold">3. <span
                                             class="fw-normal">Nombre: <span
-                                                class="fw-medium">Santiago Castaño Henao</span></span></label>
+                                                class="fw-medium">{{$nombreAS}}</span></span></label>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0">
                                 <div class="text-start">
-                                    <label for="" class="fs-4 text-end fw-bold">4. <span
+                                    <label for="" class="fs-4 fw-bold">4. <span
                                             class="fw-normal">Cédula: <span
-                                                class="fw-medium">1006051717</span></span></label>
+                                                class="fw-medium">{{$cedula}}</span></span></label>
                                 </div>
                             </div>
                         </div>
@@ -91,24 +91,24 @@
                 <div class="row m-0 my-2">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row m-0">
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-4 p-0">
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
                                 <div class="text-start">
                                     <label for="" class="fs-4 text-start fw-bold">5. <span
-                                            class="fw-normal">Score: <span class="fw-medium fs-2 text-danger">709</span>-<span class="fs-2">🟢⚪⚪</span></span></label>
+                                            class="fw-normal">Score: <span class="fw-medium fs-2 text-danger">{!!$score!!}</span>-<span class="fs-2">{!!$estadoDatacredito!!}</span></span></label>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-4 p-0">
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
                                 <div class="text-start">
                                     <label for="" class="fs-4 text-start fw-bold">6. <span
-                                            class="fw-normal">Código de nomina: <span
-                                                class="fw-medium">WX</span></span></label>
+                                            class="fw-normal">Código de nomina: <br><span
+                                                class="fw-medium" title="{{$nomNomina}}">{{$codNomina}} - <span class="fw-bold">{{$nomNomina}}</span></span></span></label>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-4 p-0">
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
                                 <div class="text-start">
                                     <label for="" class="fs-4 text-start fw-bold">7. <span
-                                            class="fw-normal">Salario: <span
-                                                class="fw-medium">$4.000.000</span></span></label>
+                                            class="fw-normal">Salario: $<span
+                                                class="fw-medium">{{$salario}}</span></span></label>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="text-start">
                             <label for="" class="fs-4 text-end fw-bold">8. <span class="fw-normal">Nombre
-                                    Asesor: <span class="fw-medium">Walter Cruz</span></span></label>
+                                    Asesor: <span class="fw-medium">{{$asesor}}</span></span></label>
                         </div>
                     </div>
                 </div>
@@ -136,11 +136,11 @@
                         </div>
                     </div>
                 </div>
-
+{{--
                 <div class="text-center mt-2 mb-4">
                     <button id="asociarmeBtn" class="btn btn-success fs-5 fw-bold w-100" disabled
                         type="submit">¡Enviar!</button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
