@@ -35,7 +35,7 @@ Route::get('/', function () {
 Route::post('/asociaciones', [AsociacionController::class, 'store'])->name('fase1');
 Route::get('/', [AsociacionController::class, 'municipios']);
 
-Route::get('/f2', function () {
+Route::get('/fase2', function () {
     return view('fase2');
 });
 
@@ -47,5 +47,20 @@ Route::get('/fase1', function () {
 Route::get('fase1/datatable', [AdminController::class, 'getasociaciones'])->name('datatable.fases');
 Route::get('fase1/info-{id}', [AdminController::class, 'getdata'])->name('info.fases');
 Route::get('fase1', [AdminController::class, 'agencias']);
+Route::post('/fase2', [AdminController::class, 'validarafase2'])->name('validarfase2');
 
 
+Route::get('/firmas', function () {
+
+    return view('admin/firma');
+});
+
+
+Route::post('/firmas', [AdminController::class, 'store'])->name('guardar.firma');
+Route::get('/firmas',  [AdminController::class, 'index']);
+Route::delete('/firmas/{id}', [AdminController::class, 'delete'])->name('eliminar.firma');
+
+Route::get('/fase3', function () {
+
+    return view('construccion');
+});

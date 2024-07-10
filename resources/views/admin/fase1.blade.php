@@ -8,64 +8,25 @@
         @endphp
     @else
     @endif
-    <div class="wrapper d-flex align-items-stretch">
-        <nav id="sidebar" class="">
-            <div class="custom-menu d-block d-lg-none">
-                <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                    <i class="fa fa-bars"></i>
-                    <span class="sr-only">Toggle Menu</span>
-                </button>
-            </div>
-            <div class="p-4">
-                <div class="image-container mb-2">
-                    <img src="https://www.coopserp.com/permiso/img/logoCoopserp.svg" alt="Logo Coopserp"
-                        style="filter: drop-shadow(0 2px 0.4px white);">
-                </div>
-                <div class="text-center">
-                    <h1 class="fs-5 text-white">❗Asociación Virtual❗</h1>
-                    <img style="height: 5.5rem" class="mx-1 mb-2 mt-2" src="img/perfil.png">
-                    <h1 class="fs-5 text-white">Bienvenido <span class="text-warning">{{ session('name') }}</span>
-                    </h1>
-
-                </div>
-                <ul class="list-unstyled components mb-5">
-                    <li class="active fs-5" title="Fase 1">
-                        <a href="#"><i class="fa-solid fa-file-invoice mr-2"></i> Solicitudes F1</a>
-                    </li>
-                    <li class="fs-5" title="Fase 2">
-                        <a href="#"><i class="fa-solid fa-scroll mr-2"></i> Solicitudes F2</a>
-                    </li>
-                    <li class="fs-5">
-                        <a href="#"><span class="fa fa-briefcase mr-3"></span> Proximamente</a>
-                    </li>
-                    <li class="fs-5">
-                        <a href="#"><span class="fa fa-sticky-note mr-3"></span> Proximamente</a>
-                    </li>
-                    <li class="fs-5">
-                        <a href="#"><span class="fa fa-paper-plane mr-3"></span> Proximamente</a>
-                    </li>
-                </ul>
-                <a onclick="return csesion()" href="{{ route('login.destroy') }}">
-                    <div class="text-center mb-4">
-                        <button class="btn-class-name" title="Cerrar Sesión">
-                            <span class="back"></span>
-                            <span class="front"><i class="fa-solid fa-right-from-bracket"></i></span>
-                        </button>
-                    </div>
-                </a>
-
-                <div class="footer">
-                    <p class="text-white">Coopserp Web &copy; <?php echo date('Y'); ?> Diseñado y Desarrollado
-                        por <a class="text-warning text-decoration-none fw-semibold" target="_blank"
-                            href="https://github.com/Santi0920">Santiago Henao</a>.</p>
-                </div>
 
 
-            </div>
-        </nav>
+    @if (session("incorrecto"))
+    <div>
+        <script>
+            Swal.fire
+            ({
+                icon: 'error',
+                title: "{{session('incorrecto')}}",
+                text: '',
+                confirmButtonColor: '#6f42c1',
+            });
+        </script>
+    </div>
+    @endif
 
+    @include('layouts/side')
         <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5 pt-5 mt-0">
+    <div id="content" class="p-4 p-md-5 pt-5 mt-0">
             <h2 class="mb-4 fw-bold font mt-0 text-dark">ASOCIACIONES ó ACTUALIZACIÓN DE DATOS - FASE #1</h2>
             <div class="table-responsive w-100 text-start">
                 <table class="table table-hover fs-5 text-start" id="asociaciones">
@@ -75,7 +36,7 @@
                             <th class="text-start">FECHA SOLICITUD</th>
                             <th class="text-start">CÉDULA</th>
                             <th class="text-start">NOMBRE COMPLETO</th>
-                            <th class="text-start">AGENCIA</th>
+                            <th class="text-start">DONDE NOS ESCRIBE</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -99,9 +60,10 @@
                     </button>
                 </div>
                 <div class="modal-body text-dark">
-                    <form action="{{ route('fase1') }}" method="POST" class="needs-validation" novalidate>
+                    <form action="{{route('validarfase2')}}" method="POST" class="needs-validation" novalidate id="modalf1">
                             @csrf
                             <!-- Logo Coopserp/Titulo/Formato/Consecutivo -->
+                            <input type="text" value="" name="id" id="id" class="d-none">
                             <div class="row m-0 p-3 pb-0 justify-content-center align-items-center">
                             <div class="col-12 col-sm-12 col-md-12 col-lg-4 d-none d-md-none d-lg-block">
                                 <img width="100%" height="200" src="https://www.coopserp.com/permiso/img/logoCoopserp.svg" alt="https://www.coopserp.com/permiso/img/logoCoopserp.svg">
@@ -115,17 +77,20 @@
                                         <h1 class="h1 fw-bold m-0">F1</h1>
                                     </div>
                                     <div class="col-6 text-center p-3">
-                                        <h1 class="h1 fw-bold m-0 text-danger" id="numeroAutorizacion">No.01</h1>
+                                        <h1 class="h1 fw-bold m-0 text-danger" id="numeroAutorizacion"></h1>
                                     </div>
                                 </div>
                                 <div class="row text-center">
                                         <h3 class="fw-semibold"><span>Fecha: </span><span class="text-dark" id="fecha"></span></h3>
-                                        <div class="select-container">
-                                            <select id="ciudad" name="ciudad" class="form-control border border-dark text-center fw-bold fs-5 blink" style="" required>
-                                                @foreach($municipios as $municipio)
-                                                    <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-2 fs-2 text-dark">1.</span>
+                                                <div class="select-container">
+                                                    <select id="ciudad" name="ciudad" class="form-control border border-dark text-center fw-bold fs-5 blink" style="" required>
+                                                        @foreach($municipios as $municipio)
+                                                            <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             <div class="select-arrow" style="right: 40px">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
                                                 <path d="m6 9 6 6 6-6"/>
@@ -162,7 +127,7 @@
                                 <!-- Primera vez que se vincula? : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-auto">
-                                    <label class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">1. </span>Primera vez que se vincula? :</label>
+                                    <label class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">2. </span>Primera vez que se vincula? :</label>
                                 </div>
                                 <div class="m-0 col-auto form-check">
                                         <input type="radio" class="btn-check"  name="vinculado" id="si" autocomplete="off" value="SI" required>
@@ -179,7 +144,7 @@
                                 <!-- Nombre : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">3. </span> Nombre(s) :</label>
+                                    <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">4. </span> Nombre(s) :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="nombre" class="form-control  border border-dark" placeholder="Nombre" name="nombre" required>
@@ -188,7 +153,7 @@
                                 <!-- Lugar de Nacimiento : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="nacimiento" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">5. </span>Lugar de Nacimiento :</label>
+                                    <label for="nacimiento" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">6. </span>Lugar de Nacimiento :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div class="select-container">
@@ -208,7 +173,7 @@
                                 <!-- Tipo de Identificacion? : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-auto">
-                                    <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">7. </span>Tipo de Identificación? :</label>
+                                    <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">8. </span>Tipo de Identificación? :</label>
                                 </div>
                                 <div class="m-0 col-auto form-check text-center">
                                         <input type="radio" class="btn-check" name="tidentificacion" id="CC" autocomplete="off" value="C.C" required>
@@ -227,7 +192,7 @@
                                 <!-- Lugar de expedición : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="expedicion" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">9. </span>Lugar de expedición :</label>
+                                    <label for="expedicion" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">10. </span>Lugar de expedición :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div class="select-container">
@@ -247,7 +212,7 @@
                                 <!-- Direccion de residencia : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center my-5">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                        <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">11. </span> Dirección de residencia:</label>
+                                        <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span> Dirección de residencia:</label>
                                     </div>
                                     <div class="m-0 col">
                                         <input type="text" id="dresidencia" class="form-field form-control  border border-dark" placeholder="Dirección residencia" name="dresidencia" required>
@@ -260,7 +225,7 @@
                                 <!-- Genero : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-auto">
-                                    <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">2. </span>Genero :</label>
+                                    <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">3. </span>Genero :</label>
                                 </div>
                                 <div class="m-0 col-auto form-check">
                                         <input type="radio" class="btn-check" name="genero" id="hombre" autocomplete="off" value="M" required>
@@ -276,7 +241,7 @@
                                 <!-- Apellidos : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="apellidos" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">4. </span>Apellidos :</label>
+                                    <label for="apellidos" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">5. </span>Apellidos :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="apellidos" class="form-control  border border-dark" placeholder="Apellidos" name="apellidos" required>
@@ -286,7 +251,7 @@
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="col-sm-12 col-md-12 col-lg-auto">
                                         <label for="fecha_nacimiento" class="col-form-label">
-                                            <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">6. </span>Fecha de nacimiento:&nbsp;&nbsp;
+                                            <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">7. </span>Fecha de nacimiento:&nbsp;&nbsp;
                                         </label>
                                         <div class="d-inline-flex align-items-center">
                                             <select id="dia" name="dia" required class="form-control border border-dark" style="width: 45px">
@@ -328,7 +293,7 @@
                                 <!-- No de identificación : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="input2" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">8. </span>No de identificación :</label>
+                                    <label for="input2" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">9. </span>No de identificación :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="number" class="form-control border border-dark" placeholder="No de identificación" name="noidentificacion" id="noidentificacion" required>
@@ -338,10 +303,10 @@
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="col-sm-12 col-md-12 col-lg-auto">
                                         <label for="" class="col-form-label">
-                                            <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">10. </span>Fecha de expedición:&nbsp;&nbsp;
+                                            <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">11. </span>Fecha de expedición:&nbsp;&nbsp;
                                         </label>
                                         <div class="d-inline-flex align-items-center">
-                                            <select id="diadiaexpedicion" name="diadiaexpedicion" required class="form-control border border-dark" style="width: 45px">
+                                            <select id="diaexpedicion" name="diaexpedicion" required class="form-control border border-dark" style="width: 45px">
                                                 <script>
                                                     for (let i = 1; i <= 31; i++) {
                                                         document.write('<option value="' + i + '">' + i + '</option>');
@@ -380,7 +345,7 @@
                                 <!-- Ciudad de Residencia : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto my-2">
-                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span>Ciudad de residencia :</label>
+                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Ciudad de residencia :</label>
                                     </div>
                                     <div class="m-0 col">
                                         <div class="select-container">
@@ -404,7 +369,7 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Empresa donde trabaja :</label>
+                                    <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Empresa donde trabaja :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="empresatrabaja" class="form-control  border border-dark" placeholder="Empresa donde trabaja" name="empresatrabaja" required>
@@ -416,7 +381,7 @@
                                 <!-- Dirección Empresa : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Dirección Empresa :</label>
+                                    <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Dirección Empresa :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="dtrabajo" class="form-control  border border-dark" placeholder="Dirección Empresa" name="dtrabajo" required>
@@ -425,7 +390,7 @@
                                 <!-- Cargo : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                        <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Cargo :</label>
+                                        <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Cargo :</label>
                                     </div>
                                     <div class="m-0 col">
                                         <input type="text" id="cargo" class="form-control  border border-dark" placeholder="Cargo" name="cargo" required>
@@ -434,7 +399,7 @@
                                 <!-- ========== Dirección de correspondencia ========== -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                        <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>D. de
+                                        <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>D. de
                                             correspondencia :</label>
                                     </div>
                                     <div class="m-0 col">
@@ -448,7 +413,7 @@
                                 <!-- Ciudad de la empresa : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Ciudad de la empresa:</label>
+                                    <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Ciudad de la empresa:</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div class="m-0 col">
@@ -470,7 +435,7 @@
                                 <!-- Tiempo en el cargo : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Tiempo en el cargo :</label>
+                                    <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>Tiempo en el cargo :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div style="display: inline-block;">
@@ -483,7 +448,7 @@
                                 <!-- Ciudad de Correspondencia : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto my-2">
-                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>C. de Correspondencia :</label>
+                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>C. de Correspondencia :</label>
                                     </div>
                                     <div class="m-0 col">
                                         <div class="select-container">
@@ -506,7 +471,7 @@
                                 <!-- Celular #1 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>Celular #1:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Celular #1:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
@@ -528,7 +493,7 @@
                                 <!-- WhatsApp #1 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Whatsapp #1:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Whatsapp #1:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
@@ -552,7 +517,7 @@
                                 <!-- Celular #2 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Celular #2:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Celular #2:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
@@ -573,7 +538,7 @@
                                 <!-- WhatsApp #2 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Whatsapp #2:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">24. </span>Whatsapp #2:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
@@ -596,7 +561,7 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">24. </span>Correo electronico :</label>
+                                    <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">25. </span>Correo electronico :</label>
                                 </div>
                                 <div class="row m-0">
                                     <div class="col">
@@ -611,7 +576,7 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-auto">
-                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">25. </span>Usted autoriza a Coopserp para que
+                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">26. </span>Usted autoriza a Coopserp para que
                                             consulte sus datos en las
                                             centrales de
                                             riesgo :</label>
@@ -631,11 +596,29 @@
                                 </div>
                             </div>
 
+
+
+                            @if(session('agenciau') != 'Todo')
+                            @else
+                            <!-- ========== Donde nos escribe ========== -->
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <div class="row m-0 g-3 mb-2 align-items-center">
+                                    <div class="m-0 col-auto">
+                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">27.1. </span>Lugar donde nos escribe:</label>
+                                    </div>
+                                    <div class="m-0 col">
+                                        <span id="escribe" class="fw-bold text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <!-- ========== Vincular asociado a la agencia ========== -->
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-auto">
-                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">26. </span>Vincular asociado a la agencia :</label>
+                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">27.2. </span>Vincular asociado a la agencia de:</label>
                                     </div>
                                     <div class="m-0 col">
                                         <div class="select-container">
@@ -650,23 +633,45 @@
                                                     <path d="m6 9 6 6 6-6"/>
                                                 </svg>
                                             </div>
+                                            <div class="invalid-feedback">
+                                                Seleccionar una opción.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             </div>
-                        </form>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary w-100 fs-5"
-                    data-bs-dismiss="modal" aria-label="Close" onclick="hideModal()">Cerrar</button>
-                    <button type="button" class="btn btn-primary w-100 fs-5 d-none">Validar (Fase 2)</button>
+                    {{-- <button type="button" class="btn btn-outline-secondary w-100 fs-5"
+                    data-bs-dismiss="modal" aria-label="Close" onclick="hideModal()">Cerrar</button> --}}
+                    <button type="submit" class="btn btn-primary w-100 fs-5 boton-buscar fw-semibold" >VERIFICAR INFORMACIÓN (Fase 2)</button>
+                    <button type="submit" class="btn btn-primary w-100 fs-5 d-none" id="fase2">Validar (Fase 2)</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
 
+
+    <div class="loader terminal-loader d-none">
+    <div class="terminal-header">
+        <div class="terminal-title">Status</div>
+        <div class="terminal-controls">
+        <div class="control close"></div>
+        <div class="control minimize"></div>
+        <div class="control maximize"></div>
+        </div>
+    </div>
+        <div class="text">Cargando...</div>
+    </div>
     <style>
+        .select-arrow svg {
+            stroke: black;
+        }
+
               .tamanio  d-none d-sm-none d-md-none d-lg-inline{
          font-size: 18px;
       }
@@ -839,6 +844,98 @@
             border: none;
             background: transparent;
         }
+        /* loading */
+        @keyframes blinkCursor {
+        50% {
+            border-right-color: transparent;
+        }
+        }
+
+        @keyframes typeAndDelete {
+        0%,
+        10% {
+            width: 0;
+        }
+        45%,
+        55% {
+            width: 6.2em;
+        } /* adjust width based on content */
+        90%,
+        100% {
+            width: 0;
+        }
+        }
+
+        .terminal-loader {
+        border: 0.1em solid #333;
+        background-color: #1a1a1a;
+        color: #0f0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 1em;
+        padding: 1.5em 1em;
+        width: 12em;
+        margin: 100px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        }
+
+        .terminal-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1.5em;
+        background-color: #333;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        padding: 0 0.4em;
+        box-sizing: border-box;
+        }
+
+        .terminal-controls {
+        float: right;
+        }
+
+        .control {
+        display: inline-block;
+        width: 0.6em;
+        height: 0.6em;
+        margin-left: 0.4em;
+        border-radius: 50%;
+        background-color: #777;
+        }
+
+        .control.close {
+        background-color: #e33;
+        }
+
+        .control.minimize {
+        background-color: #ee0;
+        }
+
+        .control.maximize {
+        background-color: #0b0;
+        }
+
+        .terminal-title {
+        float: left;
+        line-height: 1.5em;
+        color: #eee;
+        }
+
+        .text {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 0.2em solid green; /* Cursor */
+        animation: typeAndDelete 4s steps(11) infinite,
+            blinkCursor 0.5s step-end infinite alternate;
+        margin-top: 1.5em;
+        }
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/popper.js"></script>
@@ -876,6 +973,49 @@
                 }, false)
             })
         })()
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const botonBuscar = document.querySelector('.boton-buscar');
+            const loader = document.querySelector('.loader');
+            const botonreal = document.querySelector('#fase2');
+            const form = document.querySelector('#modalf1');
+
+            botonBuscar.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Realiza la validación del formulario
+                if (!form.checkValidity()) {
+                    // Si el formulario no es válido, muestra el SweetAlert y resalta los campos en rojo
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Faltan campos por completar, se encuentran en color rojo.',
+                        icon: 'error',
+                        confirmButtonColor: '#646464'
+                    });
+
+                    // Agrega las clases de Bootstrap para mostrar los mensajes de error
+                    form.classList.add('was-validated');
+                } else {
+                    // Si el formulario es válido, muestra el loader y envía el formulario
+                    loader.style.display = 'block';
+                    setTimeout(() => {
+                        botonreal.click();
+                    }, 500);
+                    Swal.fire({
+                        title: '',
+                        html: '<div class="loader">' + loader.innerHTML + '</div>',
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        timer: 10000,
+                        timerProgressBar: true
+                    }).then(() => {
+
+                    });
+                }
+            });
+        });
+
     </script>
 </body>
 

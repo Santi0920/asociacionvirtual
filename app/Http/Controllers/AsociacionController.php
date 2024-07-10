@@ -37,10 +37,10 @@ class AsociacionController extends Controller
             'cargo' => $request->cargo,
             'ciudadempresa' => $request->ciudadempresa,
             'tiempocargo' => $request->anios .' años y '. $request->meses . ' meses.',
-            'celular1' => '+'.$request->code1.' '.$request->celular1,
-            'whatsapp1' => '+'.$request->code1whatsapp.' '.$request->whatsapp1,
-            'celular2' => '+'.$request->code2.' '.$request->celular1,
-            'whatsapp2' => '+'.$request->code2whatsapp.' '.$request->whatsapp2,
+            'celular1' => $request->code1.' '.$request->celular1,
+            'whatsapp1' => $request->code1whatsapp.' '.$request->whatsapp1,
+            'celular2' => $request->code2.' '.$request->celular1,
+            'whatsapp2' => $request->code2whatsapp.' '.$request->whatsapp2,
             'correo' => $request->correousuario.'@'.$request->correodominio,
             'autoriza' => $request->autoriza,
         ]);
@@ -61,7 +61,7 @@ class AsociacionController extends Controller
         }
 
 
-        return back()->with("correcto","<span class='fs-4'>".$mensaje." su solicitud ha sido registrada correctamente!<br><span class='text-dark fw-bold'>Fecha:</span> " . $currentDate . "<br> <span class='text-dark fw-bold'>Su número de solicitud es:</span> <span class='badge bg-primary fw-bold'>" . $insertedId . "</span>.</span>");
+        return back()->with("correcto","<span class='fs-4'>".$mensaje." su solicitud ha sido registrada correctamente!<br><span class='text-dark fw-bold'>Fecha:</span> " . $currentDate . "<br><span class='text-dark fw-bold'>Nos escribe:</span> " . $request->ciudad . "<br> <span class='text-dark fw-bold'>Su número de solicitud es:</span> <span class='badge bg-primary fw-bold'>" . $insertedId . "</span>.</span>");
     }
 
     // public function agencias()
@@ -76,5 +76,12 @@ class AsociacionController extends Controller
         $municipios = DB::select("SELECT * FROM municipios ORDER BY municipio ASC");
 
         return view('/asociacion', ['municipios' => $municipios]);
+    }
+
+
+    public function datosf2(){
+
+
+
     }
 }
