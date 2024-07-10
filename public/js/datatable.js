@@ -101,6 +101,8 @@ function openModal(paramIdRow) {
 
        if (data) {
             $("#id").val(data.id)
+            $("#escribe").html(data.ciudad)
+
             var options = '<option value="' + data.ciudad + '" selected >' + data.ciudad + '</option>';
             $("#fecha").html(data.fechaAccion)
             $("#numeroAutorizacion").html('No. '+data.id)
@@ -230,7 +232,7 @@ function openModal(paramIdRow) {
                 $("#no-autoriza").prop('checked', true);
             }
 
-            var optionagenciaasociacion = '<option value="' + data.agenciaasociacion + '" selected disabled>' + data.agenciaasociacion + '</option>';
+            var optionagenciaasociacion = '<option value="' + data.agenciaasociacion + '" selected>' + data.agenciaasociacion + '</option>';
             if(data.agenciaasociacion == null){
 
             }else{
@@ -256,3 +258,36 @@ function csesion() {
    var respuesta = confirm("¿Estas seguro que deseas cerrar sesión?")
    return respuesta
 }
+
+
+ function hideModalfirma() {
+    $("#mediumModal").modal('hide');
+ }
+
+
+ function showSelectBox() {
+    var radioButtons = document.getElementsByName('options');
+    var selectBoxOption1 = document.getElementById('select-box-option1');
+    var selectBoxOption2 = document.getElementById('select-box-option2');
+
+
+
+
+    // Oculta ambos select boxes por defecto
+    selectBoxOption1.style.display = 'none';
+    selectBoxOption2.style.display = 'none';
+
+
+
+    // Recorre los radio buttons para ver cuál está seleccionado
+    for (var i = 0; i < radioButtons.length; i++) {
+        if (radioButtons[i].checked) {
+            // Muestra el select box correspondiente según la opción seleccionada
+            if (radioButtons[i].value === 'option1') {
+                selectBoxOption1.style.display = 'block';
+            } else if (radioButtons[i].value === 'option2') {
+                selectBoxOption2.style.display = 'block';
+            }
+        }
+    }
+ }

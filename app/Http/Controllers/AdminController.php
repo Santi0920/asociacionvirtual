@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Agencia;
 use App\Models\Asociacion;
+use App\Models\Firmas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -50,10 +52,10 @@ class AdminController extends Controller
 
         do {
             try {
-                $response = Http::get($url . 'nombre/' . '1007864285');
+                $response = Http::get($url . 'nombre/' . $request->noidentificacion);
                 $data = $response->json();
 
-                $response2 = Http::get($url2 . 'persona/' . '1007864285');
+                $response2 = Http::get($url2 . 'persona/' . $request->noidentificacion);
                 $data2 = $response2->json();
 
                 break;
@@ -64,12 +66,12 @@ class AdminController extends Controller
         } while ($attempts < $maxAttempts);
         $status = $data['status'];
         if($status == 422){
-            return back()->with('incorrecto', 'El asociado con CC.'.' 10061717'.'. No existe en el AS400!');
+            return back()->with('incorrecto', 'El asociado con CC.'.$request->noidentificacion.'. No existe en el AS400!');
         }
 
         $status2 = $data2['status'];
         if($status2 == 422){
-            return back()->with('incorrecto', 'El asociado con CC.'.' 10061717'.'. No existe en Datacrédito!');
+            return back()->with('incorrecto', 'El asociado con CC.'.$request->noidentificacion.'. No existe en Datacrédito!');
         }
 
         $cuenta = $data['asociado']['CUENTA'];
@@ -121,6 +123,7 @@ class AdminController extends Controller
         $fechavinculacion = $asociacion->fechaAccion;
         $ciudadescribe = $request->ciudad;
         $cedula = $asociacion->noidentificacion;
+        $cedula = number_format($cedula, 0, ',', '.');
         $score = $data2['persona']['Score'];
         if($score === 'S/E'){
             $score = '<span class="badge badge-pill bg-warning text-dark fw-bold">'.$score.'</span>';
@@ -147,6 +150,9 @@ class AdminController extends Controller
         $codNomina = $data['asociado']['NOMINA'];
         $nomNomina = $data['asociado']['NOMNOMINA'];
         $salario = $data['asociado']['SALARIO'];
+        $celular = $data['asociado']['CELULAR'];
+        $correo = $data['asociado']['CORREO'];
+        $whatsapp = $data['asociado']['WHATSAPP'];
         $salarioFormateado = number_format($salario, 0, '.', ',');
         $asesor = session('name');
 
@@ -169,6 +175,9 @@ class AdminController extends Controller
             'nomNomina' => $nomNomina,
             'salario' => $salarioFormateado,
             'asesor' => $asesor,
+            'celular' => $celular,
+            'correo' => $correo,
+            'whatsapp' => $whatsapp
         ];
 
 
@@ -178,6 +187,124 @@ class AdminController extends Controller
 
 
         return view('fase2', $viewData);
+    }
+
+
+    public function index()
+    {
+        $usuario = session('email');
+
+        $apiUrl = 'http://srv-owncloud.coopserp.com/menu-datacredito/api/usuarios/' . urlencode($usuario);
+
+        $response = Http::get($apiUrl);
+        if ($response->successful()) {
+            $id = $response->json()['usuarios'][0]['id'];
+
+            $firmas = Firmas::where('firma', $id . '.png')->get();
+
+            return view('admin/firma', compact('firmas'));
+        }else {
+            return redirect()->back()->with('error', 'Error al obtener datos del usuario desde la API.');
+        }
+
+    }
+
+
+
+    public function delete($id)
+    {
+
+        $firma = Firmas::find($id);
+
+        if (!$firma) {
+            return redirect()->back()->with('error', 'La firma no existe.');
+        }
+
+        // Construir la ruta del archivo
+        $filePath = public_path('img/firmas/' . $id . '.png');
+        Log::info($filePath);
+
+        // Verificar si el archivo existe y eliminarlo
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        $firma->delete();
+
+
+        return redirect('/firmas')->with('success', 'Firma eliminada Correctamente!');
+    }
+
+
+
+
+
+    public function store(Request $request)
+    {
+        $usuario = session('email');
+
+        $request->validate([
+            'nombre' => 'required',
+            'firma' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'firmaImagen' => 'required',
+            'options' => 'required',
+        ]);
+
+        $apiUrl = 'http://srv-owncloud.coopserp.com/menu-datacredito/api/usuarios/'. $usuario;
+
+        $response = Http::get($apiUrl);
+
+
+        if ($response->successful()) {
+            $id = $response->json()['usuarios'][0]['id'];
+
+        $firmaExistente = Firmas::where('firma', $id . '.png')->first();
+
+        if($firmaExistente){
+            return redirect()->back()->with('error', 'Ya existe una firma solo puedes ingresar una firma.');
+        }else {
+            $firma = new Firmas([
+            'nombre' => $request->get('nombre'),
+        ]);
+
+        if ($request->hasFile('firma')) {
+        $imagen = $request->file("firma");
+        $nombreimagen = $id .".".$imagen->guessExtension();
+        $ruta = public_path("img/firmas/");
+        $imagen->move($ruta,$nombreimagen);
+        $firma->firma = $nombreimagen;
+
+        }
+
+
+
+        if ($request->options == 'option1') {
+
+        $imagenData = $request->get('firmaImagen');
+        $imagenData = str_replace('data:image/png;base64,', '', $imagenData); // Eliminar el prefijo
+        $imagenData = str_replace(' ', '+', $imagenData);
+        $imagenBinaria = base64_decode($imagenData);
+
+
+
+        $nombreimagen = $id . '.png';
+        $ruta = public_path("img/firmas/");
+        $rutaCompleta = $ruta . $nombreimagen;
+        file_put_contents($rutaCompleta, $imagenBinaria);
+        $firma->firma = $nombreimagen;
+        }
+
+        $firma->save();
+
+
+
+        return redirect('/firmas')->with('success', 'Firma guardada correctamente!');
+    }
+
+
+}
+
+
     }
 
 

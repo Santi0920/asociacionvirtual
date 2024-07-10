@@ -36,7 +36,7 @@
                             <th class="text-start">FECHA SOLICITUD</th>
                             <th class="text-start">CÉDULA</th>
                             <th class="text-start">NOMBRE COMPLETO</th>
-                            <th class="text-start">AGENCIA</th>
+                            <th class="text-start">DONDE NOS ESCRIBE</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -82,12 +82,15 @@
                                 </div>
                                 <div class="row text-center">
                                         <h3 class="fw-semibold"><span>Fecha: </span><span class="text-dark" id="fecha"></span></h3>
-                                        <div class="select-container">
-                                            <select id="ciudad" name="ciudad" class="form-control border border-dark text-center fw-bold fs-5 blink" style="" required>
-                                                @foreach($municipios as $municipio)
-                                                    <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-2 fs-2 text-dark">1.</span>
+                                                <div class="select-container">
+                                                    <select id="ciudad" name="ciudad" class="form-control border border-dark text-center fw-bold fs-5 blink" style="" required>
+                                                        @foreach($municipios as $municipio)
+                                                            <option value="{{ $municipio->municipio . '-' . $municipio->departamento }}">{{ $municipio->municipio . '-' . $municipio->departamento }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             <div class="select-arrow" style="right: 40px">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
                                                 <path d="m6 9 6 6 6-6"/>
@@ -124,7 +127,7 @@
                                 <!-- Primera vez que se vincula? : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-auto">
-                                    <label class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">1. </span>Primera vez que se vincula? :</label>
+                                    <label class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">2. </span>Primera vez que se vincula? :</label>
                                 </div>
                                 <div class="m-0 col-auto form-check">
                                         <input type="radio" class="btn-check"  name="vinculado" id="si" autocomplete="off" value="SI" required>
@@ -141,7 +144,7 @@
                                 <!-- Nombre : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">3. </span> Nombre(s) :</label>
+                                    <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">4. </span> Nombre(s) :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="nombre" class="form-control  border border-dark" placeholder="Nombre" name="nombre" required>
@@ -150,7 +153,7 @@
                                 <!-- Lugar de Nacimiento : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="nacimiento" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">5. </span>Lugar de Nacimiento :</label>
+                                    <label for="nacimiento" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">6. </span>Lugar de Nacimiento :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div class="select-container">
@@ -170,7 +173,7 @@
                                 <!-- Tipo de Identificacion? : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-auto">
-                                    <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">7. </span>Tipo de Identificación? :</label>
+                                    <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">8. </span>Tipo de Identificación? :</label>
                                 </div>
                                 <div class="m-0 col-auto form-check text-center">
                                         <input type="radio" class="btn-check" name="tidentificacion" id="CC" autocomplete="off" value="C.C" required>
@@ -189,7 +192,7 @@
                                 <!-- Lugar de expedición : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="expedicion" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">9. </span>Lugar de expedición :</label>
+                                    <label for="expedicion" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">10. </span>Lugar de expedición :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div class="select-container">
@@ -209,7 +212,7 @@
                                 <!-- Direccion de residencia : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center my-5">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                        <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">11. </span> Dirección de residencia:</label>
+                                        <label for="nombre" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span> Dirección de residencia:</label>
                                     </div>
                                     <div class="m-0 col">
                                         <input type="text" id="dresidencia" class="form-field form-control  border border-dark" placeholder="Dirección residencia" name="dresidencia" required>
@@ -222,7 +225,7 @@
                                 <!-- Genero : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-auto">
-                                    <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">2. </span>Genero :</label>
+                                    <label for="" class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">3. </span>Genero :</label>
                                 </div>
                                 <div class="m-0 col-auto form-check">
                                         <input type="radio" class="btn-check" name="genero" id="hombre" autocomplete="off" value="M" required>
@@ -238,7 +241,7 @@
                                 <!-- Apellidos : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="apellidos" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">4. </span>Apellidos :</label>
+                                    <label for="apellidos" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">5. </span>Apellidos :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="apellidos" class="form-control  border border-dark" placeholder="Apellidos" name="apellidos" required>
@@ -248,7 +251,7 @@
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="col-sm-12 col-md-12 col-lg-auto">
                                         <label for="fecha_nacimiento" class="col-form-label">
-                                            <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">6. </span>Fecha de nacimiento:&nbsp;&nbsp;
+                                            <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">7. </span>Fecha de nacimiento:&nbsp;&nbsp;
                                         </label>
                                         <div class="d-inline-flex align-items-center">
                                             <select id="dia" name="dia" required class="form-control border border-dark" style="width: 45px">
@@ -290,7 +293,7 @@
                                 <!-- No de identificación : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="input2" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">8. </span>No de identificación :</label>
+                                    <label for="input2" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">9. </span>No de identificación :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="number" class="form-control border border-dark" placeholder="No de identificación" name="noidentificacion" id="noidentificacion" required>
@@ -300,7 +303,7 @@
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="col-sm-12 col-md-12 col-lg-auto">
                                         <label for="" class="col-form-label">
-                                            <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">10. </span>Fecha de expedición:&nbsp;&nbsp;
+                                            <span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">11. </span>Fecha de expedición:&nbsp;&nbsp;
                                         </label>
                                         <div class="d-inline-flex align-items-center">
                                             <select id="diaexpedicion" name="diaexpedicion" required class="form-control border border-dark" style="width: 45px">
@@ -342,7 +345,7 @@
                                 <!-- Ciudad de Residencia : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto my-2">
-                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">12. </span>Ciudad de residencia :</label>
+                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Ciudad de residencia :</label>
                                     </div>
                                     <div class="m-0 col">
                                         <div class="select-container">
@@ -366,7 +369,7 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">13. </span>Empresa donde trabaja :</label>
+                                    <label for="empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Empresa donde trabaja :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="empresatrabaja" class="form-control  border border-dark" placeholder="Empresa donde trabaja" name="empresatrabaja" required>
@@ -378,7 +381,7 @@
                                 <!-- Dirección Empresa : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">14. </span>Dirección Empresa :</label>
+                                    <label for="trabajo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Dirección Empresa :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <input type="text" id="dtrabajo" class="form-control  border border-dark" placeholder="Dirección Empresa" name="dtrabajo" required>
@@ -387,7 +390,7 @@
                                 <!-- Cargo : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                        <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Cargo :</label>
+                                        <label for="cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Cargo :</label>
                                     </div>
                                     <div class="m-0 col">
                                         <input type="text" id="cargo" class="form-control  border border-dark" placeholder="Cargo" name="cargo" required>
@@ -396,7 +399,7 @@
                                 <!-- ========== Dirección de correspondencia ========== -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                        <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>D. de
+                                        <label for="dir_correspondencias" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>D. de
                                             correspondencia :</label>
                                     </div>
                                     <div class="m-0 col">
@@ -410,7 +413,7 @@
                                 <!-- Ciudad de la empresa : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">15. </span>Ciudad de la empresa:</label>
+                                    <label for="ciudad_empresa" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">16. </span>Ciudad de la empresa:</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div class="m-0 col">
@@ -432,7 +435,7 @@
                                 <!-- Tiempo en el cargo : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">17. </span>Tiempo en el cargo :</label>
+                                    <label for="tiempo_cargo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">18. </span>Tiempo en el cargo :</label>
                                 </div>
                                 <div class="m-0 col">
                                     <div style="display: inline-block;">
@@ -445,7 +448,7 @@
                                 <!-- Ciudad de Correspondencia : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-sm-12 col-md-12 col-lg-auto my-2">
-                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">19. </span>C. de Correspondencia :</label>
+                                        <label for="" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>C. de Correspondencia :</label>
                                     </div>
                                     <div class="m-0 col">
                                         <div class="select-container">
@@ -468,7 +471,7 @@
                                 <!-- Celular #1 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">20. </span>Celular #1:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Celular #1:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
@@ -490,7 +493,7 @@
                                 <!-- WhatsApp #1 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Whatsapp #1:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Whatsapp #1:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
@@ -514,7 +517,7 @@
                                 <!-- Celular #2 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">21. </span>Celular #2:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">22. </span>Celular #2:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
@@ -535,7 +538,7 @@
                                 <!-- WhatsApp #2 : -->
                                 <div class="row m-0 mb-2 align-items-center">
                                     <div class="col-auto">
-                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">23. </span>Whatsapp #2:</label>
+                                        <label for="code1" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">24. </span>Whatsapp #2:</label>
                                     </div>
                                     <div class="col">
                                         <div class="d-flex align-items-center">
@@ -558,7 +561,7 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">24. </span>Correo electronico :</label>
+                                    <label for="correo" class="col-form-label d-none d-md-block"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">25. </span>Correo electronico :</label>
                                 </div>
                                 <div class="row m-0">
                                     <div class="col">
@@ -573,7 +576,7 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-auto">
-                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">25. </span>Usted autoriza a Coopserp para que
+                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">26. </span>Usted autoriza a Coopserp para que
                                             consulte sus datos en las
                                             centrales de
                                             riesgo :</label>
@@ -592,13 +595,30 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
                             @if(session('agenciau') != 'Todo')
                             @else
+                            <!-- ========== Donde nos escribe ========== -->
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <div class="row m-0 g-3 mb-2 align-items-center">
+                                    <div class="m-0 col-auto">
+                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">27.1. </span>Lugar donde nos escribe:</label>
+                                    </div>
+                                    <div class="m-0 col">
+                                        <span id="escribe" class="fw-bold text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <!-- ========== Vincular asociado a la agencia ========== -->
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="row m-0 g-3 mb-2 align-items-center">
                                     <div class="m-0 col-auto">
-                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">26. </span>Vincular asociado a la agencia :</label>
+                                        <label for="" class="col-form-label text-center text-md-start"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">27.2. </span>Vincular asociado a la agencia de:</label>
                                     </div>
                                     <div class="m-0 col">
                                         <div class="select-container">
@@ -625,9 +645,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary w-100 fs-5"
-                    data-bs-dismiss="modal" aria-label="Close" onclick="hideModal()">Cerrar</button>
-                    <button type="submit" class="btn btn-primary w-100 fs-5 boton-buscar" >Validar (Fase 2)</button>
+                    {{-- <button type="button" class="btn btn-outline-secondary w-100 fs-5"
+                    data-bs-dismiss="modal" aria-label="Close" onclick="hideModal()">Cerrar</button> --}}
+                    <button type="submit" class="btn btn-primary w-100 fs-5 boton-buscar fw-semibold" >VERIFICAR INFORMACIÓN (Fase 2)</button>
                     <button type="submit" class="btn btn-primary w-100 fs-5 d-none" id="fase2">Validar (Fase 2)</button>
                 </div>
             </form>

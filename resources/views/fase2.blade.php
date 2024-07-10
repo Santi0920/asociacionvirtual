@@ -52,7 +52,7 @@
                                     <label for="" class="fs-4 text-start
                                      text-lg-end fw-bold">1. <span
                                             class="fw-normal">Cuenta: <span
-                                                class="fw-medium fs-2 text-danger">{{$cuenta}}</span></span></label>
+                                                class="fw-medium text-danger" style="font-size:45px">{{$cuenta}}</span></span></label>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0">
@@ -60,7 +60,7 @@
                                     <label for="" class="fs-4 text-start
                                      text-lg-end fw-bold">2. <span
                                             class="fw-normal">Agencia: <span
-                                                class="fw-medium fs-2 text-danger">{{$noAgencia}} - {{$agencia}}</span></span></label>
+                                                class="fw-medium text-danger" style="font-size: 45px">{{$noAgencia}} - {{$agencia}}</span></span></label>
                                 </div>
                             </div>
                         </div>
@@ -88,25 +88,53 @@
                     </div>
                 </div>
 
+
                 <div class="row m-0 my-2">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row m-0">
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
                                 <div class="text-start">
                                     <label for="" class="fs-4 text-start fw-bold">5. <span
-                                            class="fw-normal">Score: <span class="fw-medium fs-2 text-danger">{!!$score!!}</span>-<span class="fs-2">{!!$estadoDatacredito!!}</span></span></label>
+                                            class="fw-normal">Celular: <span class="fw-medium">{!!$celular!!}</span></label>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
                                 <div class="text-start">
                                     <label for="" class="fs-4 text-start fw-bold">6. <span
+                                            class="fw-normal">Whatsapp: <span
+                                                class="fw-medium" title="">{{$whatsapp}}</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
+                                <div class="text-start">
+                                    <label for="" class="fs-4 text-start fw-bold">7. <span
+                                            class="fw-normal">Correo: <span
+                                                class="fw-medium">{{$correo}}</span></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-0 my-2">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row m-0">
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
+                                <div class="text-start">
+                                    <label for="" class="fs-4 text-start fw-bold">8. <span
+                                            class="fw-normal">Score: <span class="fw-medium fs-2 text-danger">{!!$score!!}</span>-<span class="fs-2">{!!$estadoDatacredito!!}</span></span></label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
+                                <div class="text-start">
+                                    <label for="" class="fs-4 text-start fw-bold">9. <span
                                             class="fw-normal">Código de nomina: <br><span
                                                 class="fw-medium" title="{{$nomNomina}}">{{$codNomina}} - <span class="fw-bold">{{$nomNomina}}</span></span></span></label>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
                                 <div class="text-start">
-                                    <label for="" class="fs-4 text-start fw-bold">7. <span
+                                    <label for="" class="fs-4 text-start fw-bold">10. <span
                                             class="fw-normal">Salario: $<span
                                                 class="fw-medium">{{$salario}}</span></span></label>
                                 </div>
@@ -119,7 +147,7 @@
                 <div class="row m-0 my-2">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="text-start">
-                            <label for="" class="fs-4 text-end fw-bold">8. <span class="fw-normal">Nombre
+                            <label for="" class="fs-4 text-end fw-bold">11. <span class="fw-normal">Nombre
                                     Asesor: <span class="fw-medium">{{$asesor}}</span></span></label>
                         </div>
                     </div>
@@ -129,13 +157,14 @@
                 <div class="row m-0 my-2">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                         <div class="text-start">
-                            <label for="firma" class="fs-4 fw-bold me-3">9. <span class="fw-normal">Firma
+                            <label for="firma" class="fs-4 fw-bold me-3">12. <span class="fw-normal">Firma
                                     Asesor:</span></label>
                                     <img src="storage/firmas/1006051717.jpeg" alt="asd">
 
                         </div>
                     </div>
                 </div>
+                <a href="fase3"><button type="submit" class="btn btn-primary w-100 fs-3 boton-buscar fw-semibold" style="background-color: #6f42c1">FASE #3</button></a>
 {{--
                 <div class="text-center mt-2 mb-4">
                     <button id="asociarmeBtn" class="btn btn-success fs-5 fw-bold w-100" disabled

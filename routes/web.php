@@ -50,3 +50,17 @@ Route::get('fase1', [AdminController::class, 'agencias']);
 Route::post('/fase2', [AdminController::class, 'validarafase2'])->name('validarfase2');
 
 
+Route::get('/firmas', function () {
+
+    return view('admin/firma');
+});
+
+
+Route::post('/firmas', [AdminController::class, 'store'])->name('guardar.firma');
+Route::get('/firmas',  [AdminController::class, 'index']);
+Route::delete('/firmas/{id}', [AdminController::class, 'delete'])->name('eliminar.firma');
+
+Route::get('/fase3', function () {
+
+    return view('construccion');
+});

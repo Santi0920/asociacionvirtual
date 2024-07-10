@@ -19,11 +19,11 @@
 
             </div>
             <ul class="list-unstyled components mb-5">
-                <li class="active fs-5" title="Fase 1">
-                    <a href="#"><i class="fa-solid fa-file-invoice mr-2"></i> Solicitudes F1</a>
+                <li class="{{ Request::is('fase1') ? 'active' : '' }} fs-5" title="Fase 1">
+                    <a href="fase1"><i class="fa-solid fa-file-invoice mr-2"></i> Solicitudes F1</a>
                 </li>
-                <li class="fs-5" title="Fase 2">
-                    <a href="#"><i class="fa-solid fa-scroll mr-2"></i> Solicitudes F2</a>
+                <li class="{{ Request::is('firmas') ? 'active' : '' }} fs-5" title="Fase 2">
+                    <a href="firmas"><i class="fa-solid fa-scroll mr-2"></i> Agregar de Firma</a>
                 </li>
                 <li class="fs-5">
                     <a href="#"><span class="fa fa-briefcase mr-3"></span> Proximamente</a>
