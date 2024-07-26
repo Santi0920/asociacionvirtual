@@ -48,6 +48,9 @@ Route::get('fase1/datatable', [AdminController::class, 'getasociaciones'])->name
 Route::get('fase1/info-{id}', [AdminController::class, 'getdata'])->name('info.fases');
 Route::get('fase1', [AdminController::class, 'agencias']);
 Route::post('/fase2', [AdminController::class, 'validarafase2'])->name('validarfase2');
+Route::post('/fase3-{id}', [AdminController::class, 'infofase3'])->name('validarfase3');
+Route::post('/registrarfase3', [AdminController::class, 'registrarfase3'])->name('registrarfase3');
+
 
 
 Route::get('/firmas', function () {
@@ -62,5 +65,5 @@ Route::delete('/firmas/{id}', [AdminController::class, 'delete'])->name('elimina
 
 Route::get('/fase3', function () {
 
-    return view('construccion');
+    return view('admin/fase3');
 });

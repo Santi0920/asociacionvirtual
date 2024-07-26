@@ -16,6 +16,21 @@
         </div>
     @endif
 
+    @if (session('incorrecto'))
+        <div>
+            <script>
+                Swal.fire({
+                    html: `
+                        <img width="100%" height="200" src="https://www.coopserp.com/permiso/img/logoCoopserp.svg" alt="Logo Coopserp">
+                        <h3 class="text-center fw-bold mb-3 text-dark">¡IDENTIFICAMOS QUE USTED NO ES ASOCIADO!</h3>
+                        <div>{!! session('incorrecto') !!}</div>
+                    `,
+                    confirmButtonColor: '#646464'
+                });
+            </script>
+        </div>
+    @endif
+
     <div class="container my-5">
         <!-- <div class="row justify-content-center align-items-center vh-100 m-0"> -->
         <div class="row justify-content-center">
@@ -100,21 +115,17 @@
                         <!-- ========== Lado Derecho ========== -->
                         <div class="col-12 col-md-12 col-lg-6">
 
-                            <!-- Primera vez que se vincula? : -->
+                            <!-- tipo de asociacion : -->
                             <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-auto">
-                                    <label class="col-form-label"><span
-                                            class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">2.
-                                        </span>Primera vez que se vincula? :</label>
+                                    <label class="col-form-label"><span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">2. </span>Seleccione una opción :</label>
                                 </div>
                                 <div class="m-0 col-auto form-check">
-                                    <input type="radio" class="btn-check form-field" name="vinculado" id="si"
-                                        autocomplete="off" value="SI" required>
-                                    <label class="btn btn-outline-primary" for="si">SI</label>
+                                    <input type="radio" class="btn-check form-field" name="tipoavirtual" id="asociacion" autocomplete="off" value="asociacion" required>
+                                    <label class="btn btn-outline-primary" for="asociacion">Asociación</label>
 
-                                    <input type="radio" class="btn-check form-field" name="vinculado" id="no"
-                                        autocomplete="off" value="NO" required>
-                                    <label class="btn btn-outline-primary" for="no">NO</label>
+                                    <input type="radio" class="btn-check form-field" name="tipoavirtual" id="actualizacion" autocomplete="off" value="actualizacion" required>
+                                    <label class="btn btn-outline-primary" for="actualizacion">Actualización de datos</label>
                                     <div class="invalid-feedback">
                                         Seleccionar una opción.
                                     </div>
@@ -330,7 +341,7 @@
                             <!-- No de identificación : -->
                             <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-sm-12 col-md-12 col-lg-auto">
-                                    <label for="input2" class="col-form-label"><span
+                                    <label class="col-form-label"><span
                                             class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">9.
                                         </span>No de identificación :</label>
                                 </div>
@@ -731,7 +742,7 @@
                             </div>
                         </div>
                         <!-- ========== Se autoriza a Coopserp para que consulte en las centrales de riesgo ========== -->
-                        <div class="col-12 col-md-12 col-lg-12">
+                        <div id="authorization-section" class="col-12 col-md-12 col-lg-12">
                             <div class="row m-0 g-3 mb-2 align-items-center">
                                 <div class="m-0 col-auto">
                                     <label for="" class="col-form-label text-center text-md-start"><span
@@ -756,7 +767,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-2">
-                            <button id="asociarmeBtn" class="btn btn-success fs-5 fw-bold w-100" disabled
+                            <button id="asociarmeBtn" class="btn btn-success fs-5 fw-bold w-100"
                                 type="submit">¡ASOCIARME!</button>
                         </div>
                         <script>
@@ -784,7 +795,7 @@
 
                                     setTimeout(() => {
                                         Swal.close();
-                                    }, 3000);
+                                    }, 10000);
                                 } else {
                                     Swal.fire({
                                         title: 'Error',
@@ -794,6 +805,19 @@
                                     });
                                 }
                             });
+
+                            document.getElementById('actualizacion').addEventListener('change', function() {
+                                document.getElementById('authorization-section').style.display = 'none';
+                                document.getElementById('si-autoriza').required = false;
+                                document.getElementById('no-autoriza').required = false;
+                            });
+
+                            document.getElementById('asociacion').addEventListener('change', function() {
+                                document.getElementById('authorization-section').style.display = 'block';
+                                document.getElementById('si-autoriza').required = true;
+                                document.getElementById('no-autoriza').required = true;
+                            });
+
                         </script>
                     </div>
                 </form>
@@ -846,15 +870,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $(document).ready(function() {
-            $('#whatsapp2').on('input', function() {
-                if ($(this).val().trim() !== "") {
-                    $('#asociarmeBtn').prop('disabled', false);
-                } else {
-                    $('#asociarmeBtn').prop('disabled', true);
-                }
-            });
-        });
+
 
         (() => {
             'use strict'
@@ -906,6 +922,21 @@
 
         // Mostrar la hora actualizada cada segundo
         setInterval(mostrarHoraActual, 1000);
+
+        function limitInputLength(element, maxLength) {
+            element.addEventListener('input', function () {
+                if (this.value.length > maxLength) {
+                    this.value = this.value.slice(0, maxLength);
+                }
+            });
+        }
+
+
+        limitInputLength(document.getElementById('input2'), 11);
+        limitInputLength(document.getElementById('celular1'), 10);
+        limitInputLength(document.getElementById('celular2'), 10);
+        limitInputLength(document.getElementById('whatsapp1'), 10);
+        limitInputLength(document.getElementById('whatsapp2'), 10);
     </script>
 </body>
 

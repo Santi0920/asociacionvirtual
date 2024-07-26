@@ -16,7 +16,7 @@ class Asociacion extends Model
     // Definimos los campos que pueden ser llenados masivamente
     protected $fillable = [
         'fechaAccion',
-        'vinculado',
+        'tipoavirtual',
         'nombre',
         'apellidos',
         'lnacimiento',
@@ -46,7 +46,7 @@ class Asociacion extends Model
 
     protected $attributes = [
         'fechaAccion' => null,
-        'vinculado' => null,
+        'tipoavirtual' => null,
         'nombre' => null,
         'apellidos' => null,
         'lnacimiento' => null,

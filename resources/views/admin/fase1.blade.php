@@ -24,6 +24,20 @@
     </div>
     @endif
 
+    @if (session("correcto"))
+    <div>
+        <script>
+            Swal.fire
+            ({
+                icon: 'success',
+                title: "{{session('correcto')}}",
+                text: '',
+                confirmButtonColor: '#6f42c1',
+            });
+        </script>
+    </div>
+    @endif
+
     @include('layouts/side')
         <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 mt-0">
@@ -37,6 +51,7 @@
                             <th class="text-start">CÉDULA</th>
                             <th class="text-start">NOMBRE COMPLETO</th>
                             <th class="text-start">DONDE NOS ESCRIBE</th>
+                            <th class="text-start">ESTADO</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -55,11 +70,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 fw-bold text-dark" id="nombrehead"></h1>
+                    {{-- <button class="ms-3 btn btn-info fw-bold" onclick="">Imprimir</button> --}}
                     <button type="button" class="btn-close fs-5" data-bs-dismiss="modal" aria-label="Close"
                         style="outline: none; border: none; font-size:18px" onclick="hideModal()">
                     </button>
                 </div>
-                <div class="modal-body text-dark">
+                <div class="modal-body text-dark" id="imprimir">
                     <form action="{{route('validarfase2')}}" method="POST" class="needs-validation" novalidate id="modalf1">
                             @csrf
                             <!-- Logo Coopserp/Titulo/Formato/Consecutivo -->
@@ -126,19 +142,19 @@
 
                                 <!-- Primera vez que se vincula? : -->
                                 <div class="row m-0 g-3 mb-2 align-items-center">
-                                <div class="m-0 col-auto">
-                                    <label class="col-form-label"><span class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">2. </span>Primera vez que se vincula? :</label>
-                                </div>
-                                <div class="m-0 col-auto form-check">
-                                        <input type="radio" class="btn-check"  name="vinculado" id="si" autocomplete="off" value="SI" required>
-                                        <label class="btn btn-outline-primary" for="si">SI</label>
+                                    <div class="m-0 col-auto">
+                                        <label class="col-form-label"><span class="fw-bold tamanio d-none d-sm-none d-md-none d-lg-inline">2. </span>Seleccione una opción : <span id="siono" class="fw-bold"></span></label>
+                                    </div>
+                                    <div class="m-0 col-auto form-check">
+                                        <input type="radio" class="btn-check form-field" name="tipoavirtual" id="asociacion" autocomplete="off" value="asociacion" required>
+                                        <label class="btn btn-outline-primary" for="asociacion">Asociación</label>
 
-                                        <input type="radio" class="btn-check"  name="vinculado" id="no" autocomplete="off" value="NO" required>
-                                        <label class="btn btn-outline-primary" for="no">NO</label>
+                                        <input type="radio" class="btn-check form-field" name="tipoavirtual" id="actualizacion" autocomplete="off" value="actualizacion" required>
+                                        <label class="btn btn-outline-primary" for="actualizacion">Actualización de datos</label>
                                         <div class="invalid-feedback">
                                             Seleccionar una opción.
                                         </div>
-                                </div>
+                                    </div>
                                 </div>
 
                                 <!-- Nombre : -->
@@ -598,7 +614,7 @@
 
 
 
-                            @if(session('agenciau') != 'Todo')
+                            @if(session('agenciau') != 'Gerencia General' && session('agenciau') != 'Todo' && session('agenciau') != 'Coordinacion 4')
                             @else
                             <!-- ========== Donde nos escribe ========== -->
                             <div class="col-12 col-md-12 col-lg-12">
@@ -668,6 +684,28 @@
         <div class="text">Cargando...</div>
     </div>
     <style>
+            .custom-buttons {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+            .custom-btn {
+                background-color: #646464;
+                font-weight: bold;
+                font-size: 20px;
+                color: white;
+                padding: 5px 10px;
+                margin: 2px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .custom-btn:hover {
+                background-color: #aeaeae;
+            }
+
+
         .select-arrow svg {
             stroke: black;
         }
@@ -944,6 +982,12 @@
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
     <script src="js/main2.js"></script>
     <script src="js/datatable.js"></script>
+
+    <script src="ResourcesAll/dtables/dtable1.min.js"></script>
+    <script src="ResourcesAll/dtables/botonesdt.min.js"></script>
+    <script src="ResourcesAll/dtables/estilobotondt.min.js"></script>
+    <script src="ResourcesAll/dtables/botonimprimir.min.js"></script>
+    <script src="ResourcesAll/dtables/imprimir2.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#whatsapp2').on('input', function() {

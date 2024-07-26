@@ -61,7 +61,7 @@ class SessionController extends Controller
 
 
             if ($user['email'] == strtolower($request->email) && Hash::check($request->password, $user['password'])) {
-                if($user['rol'] == 'Consultante'){
+                if($user['rol'] == 'Consultante' || $user['rol'] == 'Gerencia' || $user['rol'] == 'Coordinacion'){
                     session([
                         'email' => $user['email'],
                         'rol' => $user['rol'],
@@ -70,7 +70,7 @@ class SessionController extends Controller
                         'expires_at' => now()->addHours(1) // Sesión expira en 1 hora
                     ]);
 
-                    if ($user['rol'] == 'Consultante') {
+                    if ($user['rol'] == 'Consultante' || $user['rol'] == 'Gerencia' || $user['rol'] == 'Coordinacion') {
                         //auditoria
                         $nombre = session('name');
                         $rol = session('rol');

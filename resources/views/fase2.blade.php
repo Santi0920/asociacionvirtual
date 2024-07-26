@@ -17,10 +17,11 @@
     <div class="container my-5">
         <div class="row m-0 justify-content-center">
             <div class="col-12 col-md-12 shadow-lg rounded-3 text-center p-3">
+                <a href="fase1" style="color: inherit;"><svg xmlns="http://www.w3.org/2000/svg" class="d-flex justify-content-start" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></a>
                 <div class="row m-0 pb-0 justify-content-center align-items-center">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                         <img width="100%" height="200" src="https://www.coopserp.com/permiso/img/logoCoopserp.svg"
-                            alt="https://www.coopserp.com/permiso/img/logoCoopserp.svg">
+                        alt="https://www.coopserp.com/permiso/img/logoCoopserp.svg">
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-danger">
                         <div class="row">
@@ -29,6 +30,7 @@
                             </div>
                             <div class="col-6 text-center p-3">
                                 <h1 class="h1 fw-bold m-0">No {{$id}}</h1>
+                                <input type="text" name="id" class="d-none" value="{{$id}}">
                             </div>
                         </div>
                         <div class="row text-center">
@@ -92,24 +94,24 @@
                 <div class="row m-0 my-2">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row m-0">
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0">
                                 <div class="text-start">
                                     <label for="" class="fs-4 text-start fw-bold">5. <span
                                             class="fw-normal">Celular: <span class="fw-medium">{!!$celular!!}</span></label>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0">
                                 <div class="text-start">
                                     <label for="" class="fs-4 text-start fw-bold">6. <span
                                             class="fw-normal">Whatsapp: <span
                                                 class="fw-medium" title="">{{$whatsapp}}</label>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-0">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 p-0 mt-2">
                                 <div class="text-start">
-                                    <label for="" class="fs-4 text-start fw-bold">7. <span
-                                            class="fw-normal">Correo: <span
-                                                class="fw-medium">{{$correo}}</span></span></label>
+                                    <label for="" class="fs-4 text-start fw-bold">7.</label>
+                                    <span class="fw-normal fs-4">Correo:</span>
+                                    <span class="fw-medium fs-5" >{{$correo}}</span>
                                 </div>
                             </div>
                         </div>
@@ -154,17 +156,20 @@
                 </div>
 
 
-                <div class="row m-0 my-2">
+                {{-- <div class="row m-0 my-2">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                         <div class="text-start">
                             <label for="firma" class="fs-4 fw-bold me-3">12. <span class="fw-normal">Firma
                                     Asesor:</span></label>
-                                    <img src="storage/firmas/1006051717.jpeg" alt="asd">
+                                    <img src="storage/firmas/1006051717.jpeg" alt="Firma Asesor">
 
                         </div>
                     </div>
-                </div>
-                <a href="fase3"><button type="submit" class="btn btn-primary w-100 fs-3 boton-buscar fw-semibold" style="background-color: #6f42c1">FASE #3</button></a>
+                </div> --}}
+                <form action="{{ route('validarfase3', $id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-primary w-100 fs-3 boton-buscar fw-semibold" style="background-color: #6f42c1">Fase #3</button>
+                </form>
 {{--
                 <div class="text-center mt-2 mb-4">
                     <button id="asociarmeBtn" class="btn btn-success fs-5 fw-bold w-100" disabled

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CorreoInfo;
 use App\Models\Agencia;
 use App\Models\Asociacion;
 use App\Models\Firmas;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -285,17 +287,27 @@ class AdminController extends Controller
         ]);
 
 
+        $nombrecompleto = $request->nombre . ' ' . $request->apellidos;
+
+
+        $consultarcc = DB::select('SELECT * FROM agencias WHERE NameAgencia = ?',[$agencia]);
+        $numeroagencia = $consultarcc[0]->NumAgencia;
+        $infodirector = DB::select('SELECT * FROM informacionagencias WHERE CC = ?',[$numeroagencia]);
+        $director = $infodirector[0]->Director;
+        $direccion = $infodirector[0]->Direccion;
+        $telefonofijo = $infodirector[0]->TelefonoFijo;
+        $celularcorp = $infodirector[0]->CelularCorp;
+        $correo = $infodirector[0]->Correo;
+        $consultafecha = DB::select('SELECT * FROM asociacion WHERE ID = ?', [$id]);
+        $fecha = $consultafecha[0]->fechaAccion;
+        $escribe = $consultafecha[0]->ciudad;
+
+
+        Mail::to($request->correo)->send(new CorreoInfo($nombrecompleto, strtoupper($agencia), $director, $direccion, $telefonofijo, $celularcorp, $correo, $id, $fecha, $escribe));
+
+
+
         return back()->with('correcto', 'Se asignó a la agencia de '.$agencia);
-
-
-
-
-        // DB::table('asociacion2')->insert([
-
-        // ]);
-
-
-
     }
 
 
@@ -431,13 +443,96 @@ class AdminController extends Controller
     public function registrarfase3(Request $request){
 
 
-        //insercion fase3
+        $idinsertado = DB::table('persona')->insertGetId([
+            //seccion informacion personal
+            'cuenta_bancaria' => $request->cuenta_bancaria,
+            'num_cuenta' => $request->num_cuenta,
+            'entidad_cuenta' => $request->entidad_cuenta,
 
-        DB::table('asociacion3')->insert([
-            'celular' => $request->nombre_completo,
 
+            'grado' => $request->grado,
+            'patrullero' => $request->patrullero,
+            'codigo_tok_apo' => $request->codigo_token,
+            'abreviatura' => $request->abreviatura_ponal,
+            'asignacion_basica_mensual' => $request->asignacion_basica_mensual,
+            'departamento' => $request->departamento,
+            'area_metropolitana' => $request->area_metropolitana,
+            'fuerza' => $request->fuerza,
+            'operaciones_moneda_extranjera' => $request->operaciones_extranjera,
+            'cuenta_moneda_extranjera' => $request->operaciones_extranjera,
+            'unidad_defensa' => $request->unidad,
+            'ciudad_defensa' => $request->ciudad,
+            'entidad_moneda' => $request->entidad_extranjera,
+            'moneda' => $request->moneda,
+            'pais_ciudad' => $request->pais_ciudad,
+            'decision_cargo' => $request->decisiones_politica,
+            'recursos_publicos' => $request-> administra_recursos,
+            'pep' => $request->persona_expuesta,
+            'pension' => $request->pension,
+            'pension_de' => $request->pension_de,
+            'resolucion' => $request->resolucion,
+            'fecha_pension' => $request->fecha_pension,
+            'entidad_pension' => $request->entidad_pension,
+            'nivel_educativo' => $request->nivel_educativo,
+            'profesion' => $request->profesion,
+            'estado_civil' => $request->estado_civil,
+            'num_hijos' => $request->num_hijos,
+            'num_personas_acargo' => $request->num_personas_acargo,
+            'vivienda_propia' => $request->vivienda_propia,
+            'ciudad_vivienda' => $request->ciudad_vivienda,
+            'vehiculo' => $request->vehiculo,
+            'placa_vehiculo' => $request->placa_vehiculo,
+            'deporte' => $request->deporte,
+            'hobby' => $request->hobby
         ]);
-        dd($request->num_cuenta);
+
+        DB::table('personal')->insert([
+            'primer_apellido' => $request->primer_apellido_personal,
+            'segundo_apellido' => $request->segundo_apellido_personal,
+            'primer_nombre' => $request->primer_nombre_personal,
+            'segundo_nombre' => $request->segundo_nombre_personal,
+            'direccion_ciudad' => $request->direccion_ciudad_personal,
+            'telefono_oficina' => $request->telefono_oficina_personal,
+            'telefono_residencia' => $request->telefono_residencia_personal,
+            'celular' => $request->celular_personal,
+            'id_persona_fk' => $idinsertado
+        ]);
+
+
+        DB::table('familiar')->insert([
+            'primer_apellido' => $request->primer_apellido_fam1,
+            'segundo_apellido' => $request->segundo_apellido_fam1,
+            'primer_nombre' => $request->primer_nombre_fam1,
+            'segundo_nombre' => $request->segundo_nombre_fam1,
+            'parentesco' => $request->parentesco_fam1,
+            'direccion_ciudad' => $request->direccion_ciudad_fam1,
+            'telefono_oficina' => $request->telefono_oficina_fam1,
+            'telefono_residencia' => $request->telefono_residencia_fam1,
+            'celular' => $request->celular_fam1,
+            'id_persona_fk' => $idinsertado
+        ]);
+
+
+        DB::table('conyuge')->insert([
+            'nombre' => $request->nombre_conyuge,
+            'tipo_documento' => $request->tipo_documento_conyuge,
+            'num_documento' => $request->num_documento_conyuge,
+            'fecha_nacimiento' => $request->fecha_nacimiento_conyuge,
+            'lugar_nacimiento' => $request->lugar_nacimiento_conyuge,
+            'empresa' => $request->empresa_labora_conyuge,
+            'ocupacion_empresa' => $request->ocupacion_conyuge,
+            'direccion_oficina' => $request->direccion_oficina_conyuge,
+            'ciudad_oficina' => $request->ciudad_oficina_conyuge,
+            'telefono' => $request->telefono_oficina_conyuge,
+            'decision_cargo' => $request->decisiones_politica_conyuge,
+            'recursos_publicos' => $request->administra_recursos_conyuge,
+            'pep' => $request->persona_expuesta_conyuge,
+            'especificacion' => $request->especificacion_conyuge,
+            'id_persona_fk' => $idinsertado
+        ]);
+
+        return
+        redirect()->to('/fase1')->with('correcto', 'Se ha completado satisfactoriamente la fase #3');
 
 
     }

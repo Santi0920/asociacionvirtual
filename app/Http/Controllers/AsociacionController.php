@@ -6,6 +6,7 @@ use App\Models\Asociacion;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class AsociacionController extends Controller
 {
@@ -15,9 +16,37 @@ class AsociacionController extends Controller
         $currentDate = ucfirst($currentDate);
         // Crear una nueva instancia del modelo y asignar los valore
 
+
+
+        if($request->tipoavirtual == 'actualizacion'){
+            $url = "http://srv-owncloud.coopserp.com/conexion_s400/api/";
+            $attempts = 0;
+            $maxAttempts = 3; // INTENTOS MÁXIMOS
+            $retryDelay = 500; // Milisegundos
+
+            do {
+                try {
+                    $response = Http::get($url . 'nombre/' . $request->noidentificacion);
+                    $data = $response->json();
+
+                    break;
+                } catch (\Exception $e) {
+                    $attempts++;
+                    usleep($retryDelay * 1000);
+                }
+            } while ($attempts < $maxAttempts);
+
+            $status = $data['status'];
+
+            if($status == '422'){
+                return back()->with("incorrecto","<span class='fs-4'>Para actualizar sus datos debe ser asociado a la Cooperativa.</span>");
+            }
+        }
+
+
         $asociacion = new Asociacion([
             'fechaAccion' => $currentDate,
-            'vinculado' => $request->vinculado,
+            'tipoavirtual' => $request->tipoavirtual,
             'nombre' => $request->nombre,
             'apellidos' => $request->apellidos,
             'lnacimiento' => $request->lnacimiento,

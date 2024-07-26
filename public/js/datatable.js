@@ -49,6 +49,25 @@ $(document).ready(function () {
             }
          },
          {
+            "data": "agenciaasociacion",
+            "render": function (data, type, row) {
+                agenciaasociacion = row.agenciaasociacion;
+                fase3 = row.fase3;
+
+                if(fase3 == '1'){
+                    return  `<div class="btn btn-primary shadow" style="padding: 0.4rem 1.4rem; border-radius: 10%;font-weight: 600;font-size: 14px;"><label style="margin-bottom: 0px;">FINALIZADO</div>`
+                }else if(agenciaasociacion == null){
+                    return  `<div class="btn btn-warning shadow" style="padding: 0.4rem 1.4rem; border-radius: 10%;font-weight: 600;font-size: 14px;"><label style="margin-bottom: 0px;">PENDIENTE</div>`
+                }else{
+                    return  `<div class="btn btn-success shadow" style="padding: 0.4rem 1.4rem; border-radius: 10%;font-weight: 600;font-size: 14px;"><label style="margin-bottom: 0px;">ASIGNADO</div>`
+                }
+
+            },
+            "createdCell": function (td, cellData, rowData, row, col) {
+               $(td).addClass('text-start');
+            }
+         },
+         {
             "data": null,
             "render": function (data, type, row) {
                var id = row.id;
@@ -86,8 +105,36 @@ $(document).ready(function () {
          "processing": "Procesando...",
          "search": "Buscar:",
          "zeroRecords": "Sin resultados encontrados",
-      }
+      },
+      "initComplete": function(settings, json) {
+            var buttonsHtml = '<div class="custom-buttons">' +
+                '<button id="btnT" class="custom-btn" title="ACTUALIZAR INFORMACIÓN"><i class="fa-solid fa-rotate-right"></i></button>' +
+                //   '<button id="btnFA" class="custom-btn" title="FALTA POR APROBAR">FA</button>' +
+                '</div>';
+            $(buttonsHtml).prependTo('.dataTables_filter');
+            $('#btnT').on('click', function() {
+                table.ajax.reload(null, false);
+
+            });
+        },
+        responsive: "true",
+        dom: 'Bfrtilp',
+        buttons:[
+            {
+                extend:    'excelHtml5',
+                text:      '<i class="fas fa-file-excel"></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success btn-lg'
+            },
+            {
+                extend:    'print',
+                text:      '<i class="fa fa-print"></i> ',
+                titleAttr: 'Imprimir',
+                className: 'btn btn-info btn-lg'
+            }
+        ]
    });
+
 });
 
 function openModal(paramIdRow) {
@@ -106,12 +153,13 @@ function openModal(paramIdRow) {
             var options = '<option value="' + data.ciudad + '" selected >' + data.ciudad + '</option>';
             $("#fecha").html(data.fechaAccion)
             $("#numeroAutorizacion").html('No. '+data.id)
-            if(data.vinculado == 'SI')
+            if(data.tipoavirtual == 'asociacion')
             {
-                $("#si").prop('checked', true);
-            }else{
-                $("#no").prop('checked', true);
+                $("#asociacion").prop('checked', true);
+            }else if(data.tipoavirtual == 'actualizacion'){
+                $("#actualizacion").prop('checked', true);
             }
+            $("#siono").html(data.tipoavirtual)
 
             $("#ciudad").prepend(options);
             $("#nombre").val(data.nombre)
@@ -185,8 +233,10 @@ function openModal(paramIdRow) {
 
             var celular1 = data.celular1;
             var separar = celular1.split(' ');
+            //quiero tomar el codigo sin el +
             var codigoPais1fijo = separar[0];
             var restoNumero1  = separar[1];
+
 
             $("#celular1").val(restoNumero1)
             $("#code1").val(codigoPais1fijo);
@@ -218,6 +268,8 @@ function openModal(paramIdRow) {
             var separar4 = whatsapp2.split(' ');
             var codigoPaisW2fijo = separar4[0];
             var restoNumeroW2  = separar4[1];
+
+            console.log(codigoPaisW2fijo + ' -- '+restoNumeroW2);
 
             $("#whatsapp2").val(restoNumeroW2)
             $("#code2whatsapp").val(codigoPaisW2fijo);
