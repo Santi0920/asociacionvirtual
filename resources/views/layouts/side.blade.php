@@ -22,6 +22,9 @@
                 <li class="{{ Request::is('fase1') ? 'active' : '' }} fs-5" title="Fase 1">
                     <a href="fase1"><i class="fa-solid fa-file-invoice mr-2"></i> Solicitudes F1</a>
                 </li>
+                <li class="{{ Request::is('fase3-data') ? 'active' : '' }} fs-5" title="Fase 3">
+                    <a href="fase3-data"><i class="fa-solid fa-file-invoice mr-2"></i> Solicitudes F3</a>
+                </li>
                 {{-- <li class="{{ Request::is('fase2') ? 'active' : '' }} fs-5">
                     <a href="fase2"><span class="fa fa-briefcase mr-3"></span> Solicitudes F2</a>
                 </li> --}}

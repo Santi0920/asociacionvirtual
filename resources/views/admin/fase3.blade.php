@@ -126,8 +126,8 @@
                         <label for="cuenta_bancaria">Cuenta Bancaria</label>
                         <select id="cuenta_bancaria" class="form-control border border-dark" name="cuenta_bancaria" required>
                             <option value="" selected>Seleccionar una opción</option>
-                            <option value="ahorro">Ahorro</option>
-                            <option value="corriente">Corriente</option>
+                            <option value="Ahorro">Ahorro</option>
+                            <option value="Corriente">Corriente</option>
                         </select>
                         <div class="invalid-feedback">
                             Por favor, seleccione una cuenta bancaria.
@@ -142,7 +142,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="entidad">Entidad</label>
-                        <input type="text" class="form-control border border-dark" id="entidad" name="entidad_cuenta" placeholder="Entidad" required>
+                        <input type="text" class="form-control border border-dark" id="entidad_cuenta" name="entidad_cuenta" placeholder="Entidad" required>
                         <div class="invalid-feedback">
                             Por favor, ingrese la entidad.
                         </div>
@@ -160,11 +160,11 @@
                         <label for="operaciones_extranjera">¿Realiza operaciones en moneda Extranjera?</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="operaciones_extranjera_si" name="operaciones_extranjera" value="si" required>
+                                <input class="form-check-input border border-dark" type="radio" id="operaciones_extranjera_si" name="operaciones_extranjera" value="Si" required>
                                 <label class="form-check-label" for="operaciones_extranjera_si">Sí</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="operaciones_extranjera_no" name="operaciones_extranjera" value="no" required>
+                                <input class="form-check-input border border-dark" type="radio" id="operaciones_extranjera_no" name="operaciones_extranjera" value="No" required>
                                 <label class="form-check-label" for="operaciones_extranjera_no">No</label>
                             </div>
                             <div class="invalid-feedback">
@@ -176,11 +176,11 @@
                         <label for="cuenta_extranjera">¿Posee cuenta en Moneda Extranjera?</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="cuenta_extranjera_si" name="cuenta_extranjera" value="si" required>
+                                <input class="form-check-input border border-dark" type="radio" id="cuenta_extranjera_si" name="cuenta_extranjera" value="Si" required>
                                 <label class="form-check-label" for="cuenta_extranjera_si">Sí</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="cuenta_extranjera_no" name="cuenta_extranjera" value="no" required>
+                                <input class="form-check-input border border-dark" type="radio" id="cuenta_extranjera_no" name="cuenta_extranjera" value="No" required>
                                 <label class="form-check-label" for="cuenta_extranjera_no">No</label>
                             </div>
                             <div class="invalid-feedback">
@@ -215,11 +215,11 @@
                         <label for="decisiones_politica">¿Las decisiones a su cargo influyen en la política o impactan en la sociedad?</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="decisiones_politica_si" name="decisiones_politica" value="si" required>
+                                <input class="form-check-input border border-dark" type="radio" id="decisiones_politica_si" name="decisiones_politica" value="Si" required>
                                 <label class="form-check-label" for="decisiones_politica_si">Sí</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="decisiones_politica_no" name="decisiones_politica" value="no" required>
+                                <input class="form-check-input border border-dark" type="radio" id="decisiones_politica_no" name="decisiones_politica" value="No" required>
                                 <label class="form-check-label" for="decisiones_politica_no">No</label>
                             </div>
                             <div class="invalid-feedback">
@@ -231,11 +231,11 @@
                         <label for="administra_recursos">¿Administra o dispone de recursos públicos?</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="administra_recursos_si" name="administra_recursos" value="si" required>
+                                <input class="form-check-input border border-dark" type="radio" id="administra_recursos_si" name="administra_recursos" value="Si" required>
                                 <label class="form-check-label" for="administra_recursos_si">Sí</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="administra_recursos_no" name="administra_recursos" value="no" required>
+                                <input class="form-check-input border border-dark" type="radio" id="administra_recursos_no" name="administra_recursos" value="No" required>
                                 <label class="form-check-label" for="administra_recursos_no">No</label>
                             </div>
                             <div class="invalid-feedback">
@@ -247,11 +247,11 @@
                         <label for="persona_expuesta">¿Es una persona políticamente expuesta (PEP)?</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="persona_expuesta_si" name="persona_expuesta" value="si" required>
+                                <input class="form-check-input border border-dark" type="radio" id="persona_expuesta_si" name="persona_expuesta" value="Si" required>
                                 <label class="form-check-label" for="persona_expuesta_si">Sí</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="persona_expuesta_no" name="persona_expuesta" value="no" required>
+                                <input class="form-check-input border border-dark" type="radio" id="persona_expuesta_no" name="persona_expuesta" value="No" required>
                                 <label class="form-check-label" for="persona_expuesta_no">No</label>
                             </div>
                             <div class="invalid-feedback">
@@ -271,7 +271,7 @@
                         <label for="jubilado">Jubilado</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="checkbox" id="jubilado" name="pension" value="jubilado">
+                                <input class="form-check-input border border-dark" type="radio" id="jubilado" name="pension" value="Jubilado">
                                 <label class="form-check-label" for="jubilado">Sí</label>
                             </div>
                         </div>
@@ -280,25 +280,25 @@
                         <label for="pensionado">Pensionado</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="checkbox" id="pensionado" name="pension" value="pensionado">
+                                <input class="form-check-input border border-dark" type="radio" id="pensionado" name="pension" value="Pensionado">
                                 <label class="form-check-label" for="pensionado">Sí</label>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-2 ms-4">
+                    <div class="form-group col-md-3 ms-4">
                         <label for="pension_sustitucion">Pensión Por Sustitución</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="checkbox" id="pension_sustitucion" name="pension" value="pension_sustitucion">
+                                <input class="form-check-input border border-dark" type="radio" id="pension_sustitucion" name="pension" value="Pension por Sustitucion">
                                 <label class="form-check-label" for="pension_sustitucion">Sí</label>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="pension_de">De</label>
                         <input type="text" class="form-control border border-dark" id="pension_de" name="pension_de" placeholder="De">
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="resolucion">Resolución No.</label>
                         <input type="text" class="form-control border border-dark" id="resolucion" name="resolucion" placeholder="Resolución No.">
                     </div>
@@ -320,12 +320,12 @@
                         <label for="nivel_educativo">Nivel Educativo</label>
                         <select id="nivel_educativo" class="form-control border border-dark" name="nivel_educativo" required>
                             <option value="" selected>Seleccionar una opción</option>
-                            <option value="primaria">Primaria</option>
-                            <option value="secundaria">Secundaria</option>
-                            <option value="tecnico">Técnico</option>
-                            <option value="universitario">Universitario</option>
-                            <option value="posgrado">Posgrado</option>
-                            <option value="programa_especial">Programa Especial</option>
+                            <option value="Primaria">Primaria</option>
+                            <option value="Secundaria">Secundaria</option>
+                            <option value="Tecnico">Técnico</option>
+                            <option value="Universitario">Universitario</option>
+                            <option value="Posgrado">Posgrado</option>
+                            <option value="Programa Especial">Programa Especial</option>
                         </select>
                         <div class="invalid-feedback">
                             Por favor, seleccione un nivel educativo.
@@ -344,11 +344,11 @@
                         <label for="estado_civil">Estado Civil</label>
                         <select id="estado_civil" class="form-control border border-dark" name="estado_civil" required>
                             <option value="" selected>Seleccionar una opción</option>
-                            <option value="soltero(a)">Soltero(a)</option>
-                            <option value="casado(a)">Casado(a)</option>
-                            <option value="union_libre">Unión Libre</option>
-                            <option value="divorciado(a)">Divorciado(a)</option>
-                            <option value="viudo(a)">Viudo(a)</option>
+                            <option value="Soltero(a)">Soltero(a)</option>
+                            <option value="Casado(a)">Casado(a)</option>
+                            <option value="Unión Libre">Unión Libre</option>
+                            <option value="Divorciado(a)">Divorciado(a)</option>
+                            <option value="Viudo(a)">Viudo(a)</option>
                         </select>
                         <div class="invalid-feedback">
                             Por favor, seleccione el estado civil.
@@ -356,23 +356,23 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="num_hijos">Número de Hijos</label>
-                        <input type="text" class="form-control border border-dark" id="num_hijos" name="num_hijos" placeholder="Número de Hijos">
+                        <input type="number" class="form-control border border-dark" id="num_hijos" name="num_hijos" placeholder="Número de Hijos">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="num_personas_acargo">Número de Personas a Cargo</label>
-                        <input type="text" class="form-control border border-dark" id="num_personas_acargo" name="num_personas_acargo" placeholder="Número de Personas a Cargo">
+                        <input type="number" class="form-control border border-dark" id="num_personas_acargo" name="num_personas_acargo" placeholder="Número de Personas a Cargo">
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="vivienda_propia">Tiene Vivienda Propia?</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="vivienda_propia_si" name="vivienda_propia" value="si" required>
+                                <input class="form-check-input border border-dark" type="radio" id="vivienda_propia_si" name="vivienda_propia" value="Si" required>
                                 <label class="form-check-label" for="vivienda_propia_si">Sí</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input border border-dark" type="radio" id="vivienda_propia_no" name="vivienda_propia" value="no" required>
+                                <input class="form-check-input border border-dark" type="radio" id="vivienda_propia_no" name="vivienda_propia" value="No" required>
                                 <label class="form-check-label" for="vivienda_propia_no">No</label>
                             </div>
                             <div class="invalid-feedback">
@@ -380,7 +380,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="ciudad_vivienda">Ciudad</label>
                         <input type="text" class="form-control border border-dark" id="ciudad_vivienda" name="ciudad_vivienda" placeholder="Ciudad" required>
                         <div class="invalid-feedback">
@@ -436,11 +436,11 @@
                     <div class="form-group col-md-3">
                         <label for="tipo_documento">Tipo de documento</label>
                         <select id="tipo_documento" class="form-control border border-dark" name="tipo_documento_conyuge" required>
-                            <option value="" selected>Seleccionar tipo de documento</option>
-                            <option value="nuip">Nuip</option>
-                            <option value="cc">C.C</option>
-                            <option value="ti">T.I</option>
-                            <option value="ce">C.E</option>
+                            <option value="" selected>Seleccionar una opción</option>
+                            <option value="Nuip">Nuip</option>
+                            <option value="CC">C.C</option>
+                            <option value="TI">T.I</option>
+                            <option value="CE">C.E</option>
                         </select>
                         <div class="invalid-feedback">
                             Por favor, selecciona el tipo de documento.
@@ -448,7 +448,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="num_documento">No</label>
-                        <input type="text" class="form-control border border-dark" id="num_documento" name="num_documento_conyuge" placeholder="No" required>
+                        <input type="number" class="form-control border border-dark" id="num_documento" name="num_documento_conyuge" placeholder="No" required>
                         <div class="invalid-feedback">
                             Por favor, ingresa el número de documento.
                         </div>
@@ -562,7 +562,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="especificacion_conyuge">Si alguna de las preguntas es afirmativa, especifique</label>
-                        <input type="text" class="form-control border border-dark" id="especificacion_conyuge" name="especificacion_conyuge" required>
+                        <input type="text" class="form-control border border-dark" id="especificacion_conyuge" name="especificacion_conyuge">
                         <div class="invalid-feedback">
                             Por favor, especifica tu respuesta.
                         </div>
@@ -1376,27 +1376,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        (() => {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
-    <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Validación personalizada de Bootstrap
+            (() => {
+                'use strict'
+
+                // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Recorrerlos y prevenir el envío
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })();
+
+            // Habilitar/deshabilitar inputs de Ponal y Defensa
             const ponalInputs = document.querySelectorAll('#ponal-container input, #ponal-container select');
             const defensaInputs = document.querySelectorAll('#defensa-container input, #defensa-container select');
 
@@ -1431,6 +1432,71 @@
             defensaInputs.forEach(input => {
                 input.addEventListener('input', toggleInputs);
             });
+
+            // Habilitar/deshabilitar inputs de cuenta extranjera
+            const cuentaExtranjeraSi = document.getElementById('cuenta_extranjera_si');
+            const cuentaExtranjeraNo = document.getElementById('cuenta_extranjera_no');
+            const cuentaExtranjeraInputs = document.querySelectorAll('#entidad, #moneda, #pais_ciudad');
+
+            function toggleCuentaExtranjeraInputs(disabled) {
+                cuentaExtranjeraInputs.forEach(input => {
+                    input.disabled = disabled;
+                });
+            }
+
+            cuentaExtranjeraSi.addEventListener('change', function() {
+                toggleCuentaExtranjeraInputs(false);
+            });
+
+            cuentaExtranjeraNo.addEventListener('change', function() {
+                toggleCuentaExtranjeraInputs(true);
+            });
+
+            if (cuentaExtranjeraNo.checked) {
+                toggleCuentaExtranjeraInputs(true);
+            }
+
+            // Habilitar/deshabilitar input de ciudad basado en vivienda propia
+            const viviendaPropiaSi = document.getElementById('vivienda_propia_si');
+            const viviendaPropiaNo = document.getElementById('vivienda_propia_no');
+            const ciudadVivienda = document.getElementById('ciudad_vivienda');
+
+            function toggleCiudadViviendaInput(disabled) {
+                ciudadVivienda.disabled = disabled;
+            }
+
+            viviendaPropiaSi.addEventListener('change', function() {
+                toggleCiudadViviendaInput(false);
+            });
+
+            viviendaPropiaNo.addEventListener('change', function() {
+                toggleCiudadViviendaInput(true);
+            });
+
+            if (viviendaPropiaNo.checked) {
+                toggleCiudadViviendaInput(true);
+            }
+
+            // Habilitar/deshabilitar input de placa basado en posesión de vehículo
+            const vehiculoSi = document.getElementById('vehiculo_si');
+            const vehiculoNo = document.getElementById('vehiculo_no');
+            const placaVehiculo = document.getElementById('placa_vehiculo');
+
+            function togglePlacaVehiculoInput(disabled) {
+                placaVehiculo.disabled = disabled;
+            }
+
+            vehiculoSi.addEventListener('change', function() {
+                togglePlacaVehiculoInput(false);
+            });
+
+            vehiculoNo.addEventListener('change', function() {
+                togglePlacaVehiculoInput(true);
+            });
+
+            if (vehiculoNo.checked) {
+                togglePlacaVehiculoInput(true);
+            }
         });
     </script>
 

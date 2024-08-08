@@ -21,10 +21,12 @@ class AdminController extends Controller
 
         $agenciaU = session('agenciau');
 
-        if($agenciaU == 'Gerencia General' || $agenciaU == 'Todo' || $agenciaU == 'Coordinacion 4'){
+        if($agenciaU == 'Gerencia General' || $agenciaU == 'Todo'){
             $asociacion = Asociacion::get();
         }else{
-            $asociacion = Asociacion::get()->where('agenciaasociacion' ,'=',$agenciaU);
+            $asociacion = Asociacion::get()
+            ->where('fase3' ,'=',0)
+            ->where('agenciaasociacion' ,'=',$agenciaU);
         }
 
         return datatables()->of($asociacion)->toJson();
@@ -82,7 +84,7 @@ class AdminController extends Controller
             }
             //si la agencia entra ya no tendra la opcion para vinculacion de agencia
             $asociacion = Asociacion::where('ID', $id)->first();
-            if(session('agenciau') == 'Gerencia General' || session('agenciau') == 'Todo' || session('agenciau') == 'Coordinacion 4'){
+            if(session('agenciau') == 'Gerencia General' || session('agenciau') == 'Todo'){
                 $agencia = $request->agencia;
                 $agenciabd = Agencia::where('NameAgencia', $agencia)->first();
                 $noAgencia = $agenciabd->NumAgencia;
@@ -443,13 +445,13 @@ class AdminController extends Controller
     public function registrarfase3(Request $request){
 
 
+
+
         $idinsertado = DB::table('persona')->insertGetId([
             //seccion informacion personal
             'cuenta_bancaria' => $request->cuenta_bancaria,
             'num_cuenta' => $request->num_cuenta,
             'entidad_cuenta' => $request->entidad_cuenta,
-
-
             'grado' => $request->grado,
             'patrullero' => $request->patrullero,
             'codigo_tok_apo' => $request->codigo_token,
@@ -531,10 +533,29 @@ class AdminController extends Controller
             'id_persona_fk' => $idinsertado
         ]);
 
+        DB::table('asociacion')->update([
+            'fase3' => 1
+        ]);
+
         return
         redirect()->to('/fase1')->with('correcto', 'Se ha completado satisfactoriamente la fase #3');
 
 
+    }
+
+    public function getasociacionesfase3(){
+
+        $agenciaU = session('agenciau');
+
+        if($agenciaU == 'Gerencia General' || $agenciaU == 'Todo' || $agenciaU == 'Coordinacion 4'){
+            $asociacion = Asociacion::get()->where('fase3', '=', 1);
+        }else{
+            $asociacion = Asociacion::get()
+            ->where('fase3', '=', 1)
+            ->where('agenciaasociacion' ,'=',$agenciaU);
+        }
+
+        return datatables()->of($asociacion)->toJson();
     }
 
 

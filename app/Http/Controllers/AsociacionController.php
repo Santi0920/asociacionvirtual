@@ -93,18 +93,13 @@ class AsociacionController extends Controller
         return back()->with("correcto","<span class='fs-4'>".$mensaje." su solicitud ha sido registrada correctamente!<br><span class='text-dark fw-bold'>Fecha:</span> " . $currentDate . "<br><span class='text-dark fw-bold'>Nos escribe:</span> " . $request->ciudad . "<br> <span class='text-dark fw-bold'>Su número de solicitud es:</span> <span class='badge bg-primary fw-bold'>" . $insertedId . "</span>.</span>");
     }
 
-    // public function agencias()
-    // {
-    //     $agencias = DB::select("SELECT * FROM agencias ORDER BY NameAgencia ASC");
-
-    //     return view('/asociacion', ['agencias' => $agencias]);
-    // }
 
     public function municipios()
     {
         $municipios = DB::select("SELECT * FROM municipios ORDER BY municipio ASC");
+        $agencias = DB::select("SELECT * FROM agencias ORDER BY NameAgencia ASC");
 
-        return view('/asociacion', ['municipios' => $municipios]);
+        return view('/asociacion', ['municipios' => $municipios, 'agencias' => $agencias]);
     }
 
 

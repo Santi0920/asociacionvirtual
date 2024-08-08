@@ -766,6 +766,42 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="authorization-section" class="col-12 col-md-12 col-lg-12 d-none">
+                            <div class="row m-0 g-3 mb-2 align-items-center">
+                                <div class="m-0 col-auto">
+                                    <label for="" class="col-form-label text-center text-md-start"><span
+                                            class="fw-bold tamanio  d-none d-sm-none d-md-none d-lg-inline">27.
+                                        </span>¿Cual agencia le gustaria vincularse?</label>
+                                </div>
+                                <div class="m-0 px-3 col-12 col-md-12 col-lg-auto form-check text-center">
+                                    <div class="select-container">
+
+                                        <select id="ciudad" name="ciudad"
+                                            class="form-field form-control border border-dark text-center fw-bold fs-5 blink"
+                                            required>
+                                            <option value="" selected disabled>Agencia</option>
+                                            @foreach ($agencias as $agencia)
+                                                <option value="{{ $agencia->NumAgencia }}">
+                                                    {{ $agencia->NumAgencia . ' - ' . ($agencia->NameAgencia == 'La Unión' ? $agencia->NameAgencia . ' - Valle' : $agencia->NameAgencia) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <div class="select-arrow">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-chevron-down">
+                                                <path d="m6 9 6 6 6-6" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Seleccionar una agencia.
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="text-center mt-2">
                             <button id="asociarmeBtn" class="btn btn-success fs-5 fw-bold w-100"
                                 type="submit">¡ASOCIARME!</button>

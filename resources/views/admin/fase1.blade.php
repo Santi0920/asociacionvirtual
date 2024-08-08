@@ -42,6 +42,15 @@
         <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 mt-0">
             <h2 class="mb-4 fw-bold font mt-0 text-dark">ASOCIACIONES ó ACTUALIZACIÓN DE DATOS - FASE #1</h2>
+            <h2 class="mb-4 fw-bold font mt-0 text-dark">
+                @if(session('rol') == 'Gerencia' || session('rol') == 'Coordinacion')
+                    {{ '' }}
+                @else
+                    Director de agencia: {{ strtoupper(session('name')) }} - {{ strtoupper(session('agenciau')) }}
+                @endif
+            </h2>
+
+
             <div class="table-responsive w-100 text-start">
                 <table class="table table-hover fs-5 text-start" id="asociaciones">
                     <thead>
@@ -55,7 +64,6 @@
                             <th></th>
                         </tr>
                     </thead>
-
                     <tbody class="table-group-divider">
                     </tbody>
                 </table>
@@ -981,7 +989,7 @@
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
     <script src="js/main2.js"></script>
-    <script src="js/datatable.js"></script>
+    <script src="js/Datatables/datatable.js"></script>
 
     <script src="ResourcesAll/dtables/dtable1.min.js"></script>
     <script src="ResourcesAll/dtables/botonesdt.min.js"></script>

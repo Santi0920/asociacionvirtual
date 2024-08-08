@@ -35,6 +35,7 @@ Route::get('/', function () {
 Route::post('/asociaciones', [AsociacionController::class, 'store'])->name('fase1');
 Route::get('/', [AsociacionController::class, 'municipios']);
 
+
 Route::get('/fase2', function () {
     return view('fase2');
 });
@@ -50,6 +51,14 @@ Route::get('fase1', [AdminController::class, 'agencias']);
 Route::post('/fase2', [AdminController::class, 'validarafase2'])->name('validarfase2');
 Route::post('/fase3-{id}', [AdminController::class, 'infofase3'])->name('validarfase3');
 Route::post('/registrarfase3', [AdminController::class, 'registrarfase3'])->name('registrarfase3');
+Route::get('/fase3-data', function () {
+    return view('admin/fase3-data');
+});
+Route::get('fase3-data/datatable', [AdminController::class, 'getasociacionesfase3'])->name('datatable.fase3');
+Route::get('/fase3-reporte', function () {
+    return view('Coordinacion/estadisticas');
+});
+
 
 
 

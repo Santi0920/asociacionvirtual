@@ -55,11 +55,11 @@ $(document).ready(function () {
                 fase3 = row.fase3;
 
                 if(fase3 == '1'){
-                    return  `<div class="btn btn-primary shadow" style="padding: 0.4rem 1.4rem; border-radius: 10%;font-weight: 600;font-size: 14px;"><label style="margin-bottom: 0px;">FINALIZADO</div>`
+                    return  `<div class="btn btn-success shadow" style="padding: 0.4rem 1.4rem; border-radius: 10%;font-weight: 600;font-size: 14px;"><label style="margin-bottom: 0px;">FINALIZADO</div>`
                 }else if(agenciaasociacion == null){
                     return  `<div class="btn btn-warning shadow" style="padding: 0.4rem 1.4rem; border-radius: 10%;font-weight: 600;font-size: 14px;"><label style="margin-bottom: 0px;">PENDIENTE</div>`
                 }else{
-                    return  `<div class="btn btn-success shadow" style="padding: 0.4rem 1.4rem; border-radius: 10%;font-weight: 600;font-size: 14px;"><label style="margin-bottom: 0px;">ASIGNADO</div>`
+                    return  `<div class="btn btn-info shadow" style="padding: 0.4rem 1.4rem; border-radius: 10%;font-weight: 600;font-size: 14px;"><label style="margin-bottom: 0px;">ASIGNADO</div>`
                 }
 
             },
